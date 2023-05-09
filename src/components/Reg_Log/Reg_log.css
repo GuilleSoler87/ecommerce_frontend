@@ -22,12 +22,12 @@
 
 
 .form-container img {
-  width: 500px; /* reducimos el tamaño de las imágenes */
+  width: 500px;
+  /* reducimos el tamaño de las imágenes */
   height: auto;
   object-fit: cover;
-  margin-bottom: 20px;
-  border-radius: 0; /* quitamos el border-radius */
-  max-width: 100%; /* establecemos el ancho al 100% */
+  max-width: 100%;
+  /* establecemos el ancho al 100% */
 }
 
 .form-container button {

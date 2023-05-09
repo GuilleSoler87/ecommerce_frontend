@@ -6,28 +6,27 @@ import Products from "./components/Products/Products";
 import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
 import Reg_log from "./components/Reg_Log/Reg_log";
-import Register from "./components/Register/Register"
-import Login from "./components/Login/Login"
 import "./App.css";
+import { GlobalProvider } from "./context/GlobalState";
 
 
 function App() {
   return (
-
     <BrowserRouter>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/About" element={<About />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/Contact" element={<Contact />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/products" element={
+          <GlobalProvider>
+            <Products />
+          </GlobalProvider>
+        } />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/access" element={<Reg_log />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
-
   );
 }
 
-export default App
+export default App;
