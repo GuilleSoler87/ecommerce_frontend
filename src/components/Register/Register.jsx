@@ -30,8 +30,7 @@ function Register() {
 
   return (
     <div className="register-container">
-      <h2 className="register-title">Registro de usuario</h2>
-      <form onSubmit={handleSubmit} className="register-form">
+        <form onSubmit={handleSubmit} className="register-form">
         <div className="register-input-container">
           <label className="register-label">Nombre:</label>
           <input type="text" className="register-input" value={name} onChange={event => setName(event.target.value)} required placeholder="Introduce tu nombre" />

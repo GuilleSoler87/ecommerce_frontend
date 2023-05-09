@@ -7,6 +7,9 @@
 }
 
 .form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
@@ -14,12 +17,9 @@
   text-align: center;
   margin-right: 20px;
   margin-left: 20px;
+  align-items: center;
 }
 
-.form-container h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
 
 .form-container img {
   width: 500px; /* reducimos el tamaño de las imágenes */
@@ -28,11 +28,6 @@
   margin-bottom: 20px;
   border-radius: 0; /* quitamos el border-radius */
   max-width: 100%; /* establecemos el ancho al 100% */
-}
-
-.form-container p {
-  font-size: 16px;
-  margin-bottom: 30px;
 }
 
 .form-container button {
