@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { ProductContext } from "../../../context/contextProd/ProductState";
 import Select from "react-select";
+import "./AddProduct.scss"
 
 const AddProduct = () => {
   const [name, setName] = useState("");
@@ -11,8 +12,8 @@ const AddProduct = () => {
   const { addProduct } = useContext(ProductContext);
 
   const options = [
-    { value: 1, label: "Funkos" }, 
-    { value: 2, label: "One Piece" }, 
+    { value: 1, label: "Funkos" },
+    { value: 2, label: "One Piece" },
     { value: 3, label: "Merchandising" },
     { value: 4, label: "Replica Weapons" },
     { value: 5, label: "Resin" },
@@ -45,61 +46,83 @@ const AddProduct = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Product Name:
-        <input
-          type="text"
-          name="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        Price:
-        <input
-          type="number"
-          name="price"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        Description:
-        <textarea
-          name="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        Category:
-        <Select
-          isMulti
-          name="categoryId"
-          options={options}
-          value={options.filter((option) =>
-            categoryId.includes(option.value)
-          )}
-          onChange={handleChange}
-        />
-      </label>
-      <br />
-      <label>
-        Image:
-        <input type="file"
-          name="imageProduct"
-          accept=".jpg,.png,.jpeg"
-          onChange={handleImageChange}
-        />
-      </label>
-      <br />
-      <button type="submit">Add product</button>
-    </form>
+    <div className="form-container-addp">
+      <button className="back-button" onClick={() => window.location.reload()}>X</button>
+      <form className="form-addp" onSubmit={handleSubmit}>
+        <div className="form__group-addp">
+          <label className="form__label-addp" htmlFor="name">
+            <span>Nombre de Producto:</span>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="form__input-addp"
+            />
+          </label>
+        </div>
+        <div className="form__group-addp">
+          <label className="form__label-addp" htmlFor="price">
+            <span>Precio:</span>
+            <input
+              type="number"
+              id="price"
+              name="price"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              className="form__input-addp"
+            />
+          </label>
+        </div>
+        <div className="form__group-addp">
+          <label className="form__label-addp" htmlFor="description">
+            <span>Descripción:</span>
+            <textarea
+              id="description"
+              name="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              className="form__textarea-addp"
+            ></textarea>
+          </label>
+        </div>
+        <div className="form__group-addp">
+          <label className="form__label--select-addp" htmlFor="category">
+            <span>Categoría:</span>
+            <Select
+              isMulti
+              id="category"
+              name="categoryId"
+              options={options}
+              value={options.filter((option) =>
+                categoryId.includes(option.value)
+              )}
+              onChange={handleChange}
+              className="form__select-addp"
+            />
+          </label>
+        </div>
+        <div className="form__group-addp">
+          <label className="form__label--image-addp" htmlFor="image">
+            <span>Imagen:</span>
+            <input
+              type="file"
+              id="image"
+              name="imageProduct"
+              accept=".jpg,.png,.jpeg"
+              onChange={handleImageChange}
+              className="form__input-addp"
+            />
+          </label>
+        </div>
+        <div className="form__group-addp">
+          <button type="submit" className="form__button-addp">
+            Añadir producto
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
-
 export default AddProduct;

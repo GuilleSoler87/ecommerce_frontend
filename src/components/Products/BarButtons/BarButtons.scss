@@ -1,0 +1,28 @@
+.product-header {
+    position: fixed;
+    top: 81px; /* ajustar según el tamaño del header */
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #333;
+    padding: 3px;
+  }
+  
+  .create-product-btn {
+    background-color: #3f51b5;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 16px;
+    font-size: 16px;
+    margin-left: 20px;
+    cursor: pointer;
+  }
+  
+  .create-product-btn:hover {
+    background-color: #eb7c36;
+  }
+  
