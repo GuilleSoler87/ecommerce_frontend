@@ -1,34 +1,29 @@
-import React, { useState, useEffect, useContext } from "react";
-import { ProductContext } from "../../../contextProd/ProductState";
-import axios from "axios";
+import React, { useState, useContext } from "react";
+import { ProductContext } from "../../../context/contextProd/ProductState";
+import Select from "react-select";
 
 const AddProduct = () => {
   const [name, setName] = useState("");
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
   const [categoryId, setCategoryId] = useState([]);
-  const [categories, setCategories] = useState([]);
   const [image, setImage] = useState(null);
   const { addProduct } = useContext(ProductContext);
 
-  useEffect(() => {
-    axios.get("http://localhost:8080/categories")
-      .then(res => {
-        setCategories(res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, []);
+  const options = [
+    { value: 1, label: "Funkos" }, 
+    { value: 2, label: "One Piece" }, 
+    { value: 3, label: "Merchandising" },
+    { value: 4, label: "Replica Weapons" },
+    { value: 5, label: "Resin" },
+  ];
 
-  const handleCategoryChange = (event) => {
-    const options = event.target.options;
-    const values = [];
-    for (let i = 0; i < options.length; i++) {
-      if (options[i].selected) {
-        values.push(options[i].value);
-      }
-    }
-    setCategoryId(values);
+  const handleChange = (selectedOptions) => {
+    setCategoryId(selectedOptions.map((option) => option.value));
+  };
+
+  const handleImageChange = (event) => {
+    setImage(event.target.files[0]);
   };
 
   const handleSubmit = (event) => {
@@ -36,55 +31,73 @@ const AddProduct = () => {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("price", price);
+    formData.append("description", description);
     formData.append("categoryId", JSON.stringify(categoryId));
     formData.append("image", image);
-    addProduct(formData);
+    addProduct(formData)
+      .then((res) => {
+        console.log("Product successfully uploaded");
+        window.location.reload(); // recarga la página
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="name">Nombre del producto:</label>
-      <input
-        type="text"
-        id="name"
-        name="name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-
-      <label htmlFor="price">Precio:</label>
-      <input
-        type="number"
-        id="price"
-        name="price"
-        value={price}
-        onChange={(e) => setPrice(e.target.value)}
-      />
-
-      <label htmlFor="category">Categorías:</label>
-      <select
-        multiple={true}
-        id="category"
-        name="category"
-        value={categoryId}
-        onChange={handleCategoryChange}
-      >
-        {categories.map((category) => (
-          <option key={category.id} value={category.id}>
-            {category.name}
-          </option>
-        ))}
-      </select>
-
-      <label htmlFor="image">Imagen:</label>
-      <input
-        type="file"
-        id="image"
-        name="image"
-        onChange={(e) => setImage(e.target.files[0])}
-      />
-
-      <button type="submit">Añadir Producto</button>
+      <label>
+        Product Name:
+        <input
+          type="text"
+          name="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </label>
+      <br />
+      <label>
+        Price:
+        <input
+          type="number"
+          name="price"
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+        />
+      </label>
+      <br />
+      <label>
+        Description:
+        <textarea
+          name="description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+      </label>
+      <br />
+      <label>
+        Category:
+        <Select
+          isMulti
+          name="categoryId"
+          options={options}
+          value={options.filter((option) =>
+            categoryId.includes(option.value)
+          )}
+          onChange={handleChange}
+        />
+      </label>
+      <br />
+      <label>
+        Image:
+        <input type="file"
+          name="imageProduct"
+          accept=".jpg,.png,.jpeg"
+          onChange={handleImageChange}
+        />
+      </label>
+      <br />
+      <button type="submit">Add product</button>
     </form>
   );
 };

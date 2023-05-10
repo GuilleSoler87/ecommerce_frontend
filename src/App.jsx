@@ -7,7 +7,7 @@ import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
 import Reg_log from "./components/Reg_Log/Reg_log";
 import "./App.css";
-import { ProductProvider } from "./contextProd/ProductState";
+import { ProductProvider } from "./context/contextProd/ProductState";
 
 
 function App() {
@@ -17,11 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/products" element={
-          <ProductProvider>
-            <Products />
-          </ProductProvider>
-        } />
+        <Route path="/products" element={<ProductProvider><Products /></ProductProvider>} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/access" element={<Reg_log />} />
       </Routes>
