@@ -1,8 +1,9 @@
 import React, { useContext, useEffect } from 'react';
-import { GlobalContext } from '../../context/GlobalState';
+import { ProductContext } from '../../contextProd/ProductState';
+import AddProduct from './AddProduct/AddProduct';
 
 const Products = () => {
-  const { products, getProducts } = useContext(GlobalContext);
+  const { products, getProducts, deleteProduct } = useContext(ProductContext);
 
   useEffect(() => {
     getProducts();
@@ -10,11 +11,13 @@ const Products = () => {
 
   return (
     <div>
+      <AddProduct/>
       {products.map((product) => (
         <div className="product" key={product.id}>
           {/* <img src={product.image} alt={product.name} /> */}
           <p>{product.name}</p>
           <p>{product.price}</p>
+          <button onClick={() => deleteProduct(product.id)}>Borrar</button>
         </div>
       ))}
     </div>

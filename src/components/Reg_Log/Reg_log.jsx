@@ -2,8 +2,8 @@ import React from 'react';
 import './Reg_log.css';
 import RegistroImg from "../../assets/registro.jpg"
 import AccesoImg from "../../assets/acceso.jpg"
-import Registro from "../Register/Register"
-import Acceso from "../Login/Login"
+import Registro from "./Register/Register"
+import Acceso from "./Login/Login"
 
 function Reg_log() {
 
