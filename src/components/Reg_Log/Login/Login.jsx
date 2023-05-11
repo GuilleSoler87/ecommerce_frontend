@@ -1,16 +1,29 @@
-import React, { useContext, useState } from 'react';
-import { Button, Checkbox, Form, Input } from 'antd';
+import React, { useContext, useEffect} from 'react';
+import { Button, Checkbox, Form, Input, notification } from 'antd';
 import { UserContext } from '../../../context/UserContext/UserState';
-
+import { useNavigate } from "react-router-dom";
 import './Login.css';
 
 const Login = () => {
-  const { login } = useContext(UserContext);
+  const { login, message, token } = useContext(UserContext);
+  const navigate = useNavigate();
   const onFinish = (values) => {
     login(values);
   };
+
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+    if (message) {
+      notification.success({
+        message: message,
+      });
+    }
+  }, [token]);
+
   const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
+    console.log("Failed:", errorInfo);
   };
   return (
     <div className='login-container'>
@@ -80,7 +93,7 @@ const Login = () => {
             Acceder
           </Button>
         </Form.Item>
-        
+
       </Form>
     </div>
   );
