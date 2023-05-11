@@ -4,7 +4,7 @@ import RegistroImg from "../../assets/registro.jpg"
 import AccesoImg from "../../assets/acceso.jpg"
 import Registro from "./Register/Register"
 import Acceso from "./Login/Login"
-import { UserProvider } from '../../context/UserContext/UserState';
+
 
 function Reg_log() {
 
@@ -13,9 +13,7 @@ function Reg_log() {
     <div className="container">
       <div className="form-container">
         <img src={AccesoImg} alt="Register" />
-        <UserProvider>
-          <Acceso />
-        </UserProvider>
+        <Acceso />
       </div>
       <div className="form-container">
         <img src={RegistroImg} alt="Login" />

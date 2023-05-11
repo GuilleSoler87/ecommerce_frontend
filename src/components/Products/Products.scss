@@ -1,0 +1,88 @@
+.container_prodsPrin {
+    max-width: 1600px;
+    /* Ajusta el valor del ancho máximo según tus preferencias */
+    margin: 200px auto 0;
+    /* Ajusta el valor del margen superior según tus preferencias */
+}
+
+.products_container {
+    top: 91px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    /* Ajusta el valor del espacio entre los elementos según tus preferencias */
+    justify-content: center;
+}
+
+.button_cart {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border: none;
+    background-color: #3f51b5;
+    width: 35px;
+    /* Ajusta el ancho del botón según tus necesidades */
+    height: 35px;
+    /* Ajusta la altura del botón según tus necesidades */
+    transition: background-color 0.3s ease; /* Agrega una transición suave al cambio de color */
+}
+.button_cart:hover {
+    background-color: #eb7c36; /* Cambia el color de fondo al pasar el cursor sobre el botón */
+  }
+  
+
+.button_cart img {
+    width: 25px;
+    /* Ajusta el tamaño de la imagen según tus necesidades */
+    margin-top: 3px;
+}
+.button_chars_prod {
+    display: inline-block;
+    padding: 5px 10px;
+    border: none;
+    background-color: #3f51b5;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button_chars_prod span {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .button_chars_prod:hover {
+    background-color: #eb7c36;
+  }
+  
+  .delete_butt {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border: none;
+    background-color: #af1919;
+    width: 40px; /* Ajusta el ancho del botón según tus necesidades */
+    height: 40px; /* Ajusta la altura del botón según tus necesidades */
+    transition: background-color 0.3s ease; /* Agrega una transición suave al cambio de color */
+    margin-top: 2px;
+  }
+  
+  .delete_butt:hover {
+    background-color: #e11010; /* Cambia el color de fondo al pasar el cursor sobre el botón */
+  }
+  
+  .delete_butt img {
+    width: 12px; /* Ajusta el tamaño de la imagen según tus necesidades */
+    margin-top: 3px; /* Ajusta el margen superior de la imagen según tus necesidades */
+  }
+  
+  .div_butt_prod_adm {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Espacio intermedio entre los botones */
+    align-items: center;
+  }
+  
+  
+  

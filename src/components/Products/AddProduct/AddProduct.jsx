@@ -1,5 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { ProductContext } from "../../../context/contextProd/ProductState";
+import { CategoryContext } from "../../../context/categoryContext/CategoryState";
 import Select from "react-select";
 import "./AddProduct.scss"
 
@@ -10,17 +11,22 @@ const AddProduct = () => {
   const [categoryId, setCategoryId] = useState([]);
   const [image, setImage] = useState(null);
   const { addProduct } = useContext(ProductContext);
+  const { categories,getCategories } = useContext(CategoryContext);
 
-  const options = [
-    { value: 1, label: "Funkos" },
-    { value: 2, label: "One Piece" },
-    { value: 3, label: "Merchandising" },
-    { value: 4, label: "Replica Weapons" },
-    { value: 5, label: "Resin" },
-  ];
+useEffect (() => {
+  getCategories ()
+},[])
+
+  // const options = [
+  //   { value: 1, label: "Funkos" },
+  //   { value: 2, label: "One Piece" },
+  //   { value: 3, label: "Merchandising" },
+  //   { value: 4, label: "Replica Weapons" },
+  //   { value: 5, label: "Resin" },
+  // ];
 
   const handleChange = (selectedOptions) => {
-    setCategoryId(selectedOptions.map((option) => option.value));
+    setCategoryId(selectedOptions.map((option) => option.id));
   };
 
   const handleImageChange = (event) => {
@@ -94,8 +100,8 @@ const AddProduct = () => {
               isMulti
               id="category"
               name="categoryId"
-              options={options}
-              value={options.filter((option) =>
+              options={categories}
+              value={categories.filter((option) =>
                 categoryId.includes(option.value)
               )}
               onChange={handleChange}

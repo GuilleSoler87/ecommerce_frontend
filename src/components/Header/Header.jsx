@@ -1,23 +1,25 @@
 import React, { useContext, useEffect } from "react";
 import "./Header.css";
 import { Link, useNavigate } from "react-router-dom";
-import { Avatar, message, notification } from "antd";
+import { Avatar, notification } from "antd";
 import Logo from "../../assets/Logo ECOMMERCE ANIMAZON.png";
 import Lupa from "../../assets/lupa.png";
 import { UserContext } from "../../context/UserContext/UserState";
 import { UserOutlined } from "@ant-design/icons";
 
-
 const Header = () => {
-  const { token, logout } = useContext(UserContext);
+  const { token, logout, logoutMessage } = useContext(UserContext);
+  const navigate = useNavigate();
+
   useEffect(() => {
-    if (!token) {
-      useNavigate("/");
+    if (logoutMessage) {
+      navigate("/");
       notification.success({
-        message: "Logout successful",
+        message: logoutMessage,
       });
     }
-  }, [token]);
+  }, [logoutMessage, navigate]);
+
   return (
     <div>
       <div className="header-container">
@@ -47,10 +49,18 @@ const Header = () => {
           </Link>
           {token ? (
             <>
-              <Link to="/" className="header-nav-link">
+              <Link to="/profile" className="header-nav-link">
                 <Avatar icon={<UserOutlined />} />
               </Link>
-              <span onClick={() => logout()}>Logout</span>
+              <span
+                onClick={() => {
+                  logout();
+                  navigate("/");
+                }}
+                className="header-nav-link"
+              >
+                Logout
+              </span>
             </>
           ) : (
             <Link to="/access" className="header-nav-link">

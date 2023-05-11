@@ -6,24 +6,33 @@ import Products from "./components/Products/Products";
 import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
 import Reg_log from "./components/Reg_Log/Reg_log";
+import EditProduct from "./components/Products/EditProduct/EditProduct"
 import "./App.css";
 import { ProductProvider } from "./context/contextProd/ProductState";
 import { UserProvider } from "./context/UserContext/UserState";
+import { CategoryProvider } from "./context/categoryContext/CategoryState";
 import Profile from "./components/Profile/Profile";
 
 
 function App() {
   return (
     <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/products" element={<ProductProvider><Products /></ProductProvider>} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/access" element={<Reg_log />} />
-        <Route path="/profile" element={<UserProvider><Profile /></UserProvider>} />
-      </Routes>
+      <ProductProvider>
+        <UserProvider>
+          <CategoryProvider>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/updateProduct/:id" element={<EditProduct />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/access" element={<Reg_log />} />
+            <Route path="/profile" element={<Profile />} />
+          </Routes>
+          </CategoryProvider>
+        </UserProvider>
+      </ProductProvider>
     </BrowserRouter>
   );
 }

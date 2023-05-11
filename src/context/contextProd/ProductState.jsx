@@ -6,7 +6,7 @@ const API_URL = "http://localhost:8080/"
 
 const initialState = {
     products: [],
-    product:{}
+    product: {}
 };
 
 
@@ -38,15 +38,28 @@ export const ProductProvider = ({ children }) => {
             payload: res.data.product,
         });
 
-    }
+    };
+    const getProductId = async (id) => {
+        const res = await axios.get(API_URL + "products/getById/" + id);
+        dispatch({
+            type: "GET_PRODUCT_ID",
+            payload: res.data,
+        });
+    };
+    const updateProductId = async (id, product) => {
+        await axios.put(API_URL + "/products/updateProdById/" + id, product);
+    };
 
     return (
         <ProductContext.Provider
             value={{
                 products: state.products,
+                product: state.product,
                 getProducts,
                 deleteProduct,
-                addProduct
+                addProduct,
+                getProductId,
+                updateProductId
             }}>
             {children}
         </ProductContext.Provider>

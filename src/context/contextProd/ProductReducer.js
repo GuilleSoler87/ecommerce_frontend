@@ -11,13 +11,16 @@ const products = (state, action) => {
                 products: state.products.filter(
                     (product) => product.id !== action.payload),
             };
-            case "ADD_PRODUCT":
-                return {
+        case "ADD_PRODUCT":
+            return {
                 ...state,
                 products: [action.payload, ...state.products],
-                };
-
-
+            };
+        case "GET_PRODUCT_ID":
+            return {
+                ...state,
+                product: action.payload,
+            };
 
 
         default:

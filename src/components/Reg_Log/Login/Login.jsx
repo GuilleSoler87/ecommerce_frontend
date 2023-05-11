@@ -8,19 +8,38 @@ const Login = () => {
   const { login, message, token } = useContext(UserContext);
   const navigate = useNavigate();
   const onFinish = (values) => {
-    login(values);
+    login(values)
+      .catch((error) => {
+        if (error.response) {
+          notification.error({
+            message: error.response.data.message,
+          });
+        } else {
+          notification.error({
+            message: 'Error de conexión',
+          });
+        }
+      });
   };
-
+  
   useEffect(() => {
     if (token) {
       navigate("/");
     }
-    if (message) {
+  
+    if (message && token) {
       notification.success({
         message: message,
       });
     }
-  }, [token]);
+  
+    if (message && !token) {
+      notification.error({
+        message: message,
+      });
+    }
+  }, [token, message]);
+  
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
