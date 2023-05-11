@@ -6,13 +6,20 @@
 }
 
 .products_container {
-    top: 91px;
+    width: 70vw;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 200px;
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
     /* Ajusta el valor del espacio entre los elementos según tus preferencias */
     justify-content: center;
 }
+
+
+
 
 .button_cart {
     display: inline-flex;
@@ -35,7 +42,7 @@
 .button_cart img {
     width: 25px;
     /* Ajusta el tamaño de la imagen según tus necesidades */
-    margin-top: 3px;
+    // margin-top: 3px;
 }
 .button_chars_prod {
     display: inline-block;

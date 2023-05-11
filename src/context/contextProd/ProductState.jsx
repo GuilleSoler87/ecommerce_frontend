@@ -3,10 +3,11 @@ import axios from 'axios'
 import ProductReducer from "./ProductReducer"
 const API_URL = "http://localhost:8080/"
 
-
+const cart = JSON.parse(localStorage.getItem("cart")) || [];
 const initialState = {
     products: [],
-    product: {}
+    product: {},
+    cart: cart,
 };
 
 
@@ -24,7 +25,7 @@ export const ProductProvider = ({ children }) => {
         });
     };
     const deleteProduct = async (id) => {
-        const res = await axios.delete(API_URL + "products/deleteById/" + id) //PREGUNTAR
+        const res = await axios.delete(API_URL + "products/deleteById/" + id)
         dispatch({
             type: "DELETE_PRODUCT",
             payload: id
@@ -49,17 +50,31 @@ export const ProductProvider = ({ children }) => {
     const updateProductId = async (id, product) => {
         await axios.put(API_URL + "/products/updateProdById/" + id, product);
     };
+    const addCart = (product) => {
+        dispatch({
+            type: "ADD_CART",
+            payload: product,
+        });
+    };
+    const clearCart = () => {
+        dispatch({
+            type: "CLEAR_CART",
+        });
+    };
 
     return (
         <ProductContext.Provider
             value={{
                 products: state.products,
                 product: state.product,
+                cart: state.cart,
                 getProducts,
                 deleteProduct,
                 addProduct,
                 getProductId,
-                updateProductId
+                updateProductId,
+                addCart,
+                clearCart
             }}>
             {children}
         </ProductContext.Provider>

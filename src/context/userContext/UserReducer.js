@@ -17,6 +17,8 @@ const users = (state, action) => {
             ...state,
             user: null,
             token: null,
+            logoutMessage:action.payload.message
+
           };
       default:
         return state;

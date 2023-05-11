@@ -12,7 +12,7 @@ import Papelera from "../../assets/papelera.png"
 
 
 const Products = () => {
-  const { products, getProducts, deleteProduct } = useContext(ProductContext);
+  const { products, getProducts, deleteProduct, addCart } = useContext(ProductContext);
   const { user, getUserInfo } = useContext(UserContext);
 
 
@@ -35,12 +35,12 @@ const Products = () => {
               cover={<img alt={product.name} src={"http://localhost:8080/" + product.image} />}
               actions={[
                 <button className="button_chars_prod"><Link to={'/' + product.id}><span>Características</span></Link></button>,
-                <button className='button_cart'><Link to={'/' + product.id}><img src={Carrito} alt="carrito"/></Link></button>,
+                <button className='button_cart' onClick ={() => addCart(product)}><img src={Carrito} alt="carrito"/></button>,
               ]}
             >
               <Meta
                 title={product.name}
-                description={product.price}
+                description={product.price} 
               />
             </Card>
             <div className='div_butt_prod_adm'>

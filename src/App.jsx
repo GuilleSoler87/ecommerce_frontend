@@ -12,6 +12,8 @@ import { ProductProvider } from "./context/contextProd/ProductState";
 import { UserProvider } from "./context/UserContext/UserState";
 import { CategoryProvider } from "./context/categoryContext/CategoryState";
 import Profile from "./components/Profile/Profile";
+import Cart from "./components/Cart/Cart";
+import { OrdersProvider } from "./context/OrderContext/OrderState";
 
 
 function App() {
@@ -20,16 +22,19 @@ function App() {
       <ProductProvider>
         <UserProvider>
           <CategoryProvider>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/updateProduct/:id" element={<EditProduct />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/access" element={<Reg_log />} />
-            <Route path="/profile" element={<Profile />} />
-          </Routes>
+            <OrdersProvider>
+              <Header />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/products" element={<Products />} />
+                <Route path="/updateProduct/:id" element={<EditProduct />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/access" element={<Reg_log />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/cart" element={<Cart />} />
+              </Routes>
+            </OrdersProvider>
           </CategoryProvider>
         </UserProvider>
       </ProductProvider>

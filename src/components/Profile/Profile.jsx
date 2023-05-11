@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { UserContext } from "../../context/UserContext/UserState";
-import { Card, Spin } from "antd";
+import { Card, Spin, Collapse } from "antd";
 
 const Profile = () => {
     const { getUserInfo, user } = useContext(UserContext);
@@ -24,9 +24,19 @@ const Profile = () => {
             <p>Name: {user.name}</p>
             <p>Email: {user.email}</p>
             <p>Orders: {user.orders}</p>
-            
-
         </Card>
+        {/* <h2>Orders</h2>
+      {user.orderIds.map((order) => {
+        return (
+          <Collapse defaultActiveKey={["1"]}>
+            <Panel header={order.createdAt} key="1">
+              {order.productIds.map((product) => (
+                <p>{product.name} {product.price} €</p>
+              ))}
+            </Panel>
+          </Collapse>
+        );
+      })} */}
 
     </div>;
 };

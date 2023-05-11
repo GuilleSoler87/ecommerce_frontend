@@ -1,14 +1,17 @@
 import React, { useContext, useEffect } from "react";
 import "./Header.css";
 import { Link, useNavigate } from "react-router-dom";
-import { Avatar, notification } from "antd";
+import { Avatar, notification, Badge } from "antd";
 import Logo from "../../assets/Logo ECOMMERCE ANIMAZON.png";
 import Lupa from "../../assets/lupa.png";
 import { UserContext } from "../../context/UserContext/UserState";
-import { UserOutlined } from "@ant-design/icons";
+import { UserOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import { ProductContext } from "../../context/contextProd/ProductState";
 
 const Header = () => {
-  const { token, logout, logoutMessage } = useContext(UserContext);
+  const { token, logout, logoutMessage} = useContext(UserContext);
+  const { cart } = useContext(ProductContext);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,7 +21,11 @@ const Header = () => {
         message: logoutMessage,
       });
     }
-  }, [logoutMessage, navigate]);
+  }, [logoutMessage]);
+  
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   return (
     <div>
@@ -35,38 +42,19 @@ const Header = () => {
           </button>
         </div>
         <nav className="header-nav">
-          <Link exact="true" to="/" className="header-nav-link">
-            Inicio
-          </Link>
-          <Link to="/about" className="header-nav-link">
-            Quienes somos
-          </Link>
-          <Link to="/products" className="header-nav-link">
-            Tienda
-          </Link>
-          <Link to="/contact" className="header-nav-link">
-            Contacto
-          </Link>
+          <Link exact="true" to="/" className="header-nav-link">Inicio</Link>
+          <Link to="/about" className="header-nav-link">Animazon</Link>
+          <Link to="/products" className="header-nav-link">Tienda</Link>
+          <Link to="/contact" className="header-nav-link">Contacto</Link>
           {token ? (
             <>
-              <Link to="/profile" className="header-nav-link">
-                <Avatar icon={<UserOutlined />} />
-              </Link>
-              <span
-                onClick={() => {
-                  logout();
-                  navigate("/");
-                }}
-                className="header-nav-link"
-              >
-                Logout
-              </span>
+              <Link to="/profile" className="header-nav-link"><Avatar icon={<UserOutlined />} /></Link>
+              <span onClick={() => { logout(); navigate("/"); }} className="header-nav-link2">Logout</span>
             </>
           ) : (
-            <Link to="/access" className="header-nav-link">
-              Acceso
-            </Link>
+            <Link to="/access" className="header-nav-link">Acceso</Link>
           )}
+          <Link to="/cart" className="header-nav-link"><ShoppingCartOutlined style={{ fontSize: "22px" }}/><Badge count={cart.length} style={{ marginTop: "-22px" }}></Badge></Link>
         </nav>
       </div>
     </div>
