@@ -48,7 +48,7 @@ export const ProductProvider = ({ children }) => {
         });
     };
     const updateProductId = async (id, product) => {
-        await axios.put(API_URL + "/products/updateProdById/" + id, product);
+        await axios.put(API_URL + "products/updateProdById/" + id, product);
     };
     const addCart = (product) => {
         dispatch({

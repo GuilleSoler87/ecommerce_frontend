@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ProductContext } from "../../../context/contextProd/ProductState";
+import { CategoryContext } from "../../../context/categoryContext/CategoryState";
 import Select from "react-select";
 
 const EditProduct = () => {
@@ -19,10 +20,12 @@ const EditProduct = () => {
   }, []);
 
   useEffect(() => {
-    setName(product.name);
-    setPrice(product.price);
-    setDescription(product.description);
-    setCategoryId(product.categoryId);
+    if (product) {
+      setName(product.name);
+      setPrice(product.price);
+      setDescription(product.description);
+      setCategoryId(product.categoryId);
+    }
   }, [product]);
 
   const options = [
@@ -33,7 +36,7 @@ const EditProduct = () => {
     { value: 5, label: "Resin" },
   ];
 
-  const onHandleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("name", name);
@@ -46,8 +49,8 @@ const EditProduct = () => {
       .then((res) => {
         setMessage("Producto actualizado exitosamente");
         setTimeout(() => {
-          navigate("/");
-        }, 3000);
+          navigate("/products");
+        }, 1000);
       })
       .catch((error) => {
         console.error(error);
@@ -63,7 +66,7 @@ const EditProduct = () => {
   };
 
   return (
-    <form onSubmit={onHandleSubmit}>
+    <form onSubmit={handleSubmit}>
       <div>
         <label>
           Nombre de Producto:
@@ -105,7 +108,7 @@ const EditProduct = () => {
             name="categoryId"
             options={options}
             value={options.filter((option) =>
-              categoryId.includes(option.value)
+              Array.isArray(categoryId) ? categoryId.includes(option.value) : false
             )}
             onChange={handleChange}
           />
@@ -127,5 +130,4 @@ const EditProduct = () => {
     </form>
   );
 };
-
 export default EditProduct;

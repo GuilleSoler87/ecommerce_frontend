@@ -52,7 +52,7 @@ const Header = () => {
               <span onClick={() => { logout(); navigate("/"); }} className="header-nav-link2">Logout</span>
             </>
           ) : (
-            <Link to="/access" className="header-nav-link">Acceso</Link>
+            <Link to="/access" className="header-nav-link">Mi cuenta</Link>
           )}
           <Link to="/cart" className="header-nav-link"><ShoppingCartOutlined style={{ fontSize: "22px" }}/><Badge count={cart.length} style={{ marginTop: "-22px" }}></Badge></Link>
         </nav>
