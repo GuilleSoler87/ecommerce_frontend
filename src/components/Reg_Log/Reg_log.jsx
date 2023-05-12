@@ -1,5 +1,5 @@
 import React from 'react';
-import './Reg_log.css';
+import './Reg_log.scss';
 import RegistroImg from "../../assets/registro.jpg"
 import AccesoImg from "../../assets/acceso.jpg"
 import Registro from "./Register/Register"

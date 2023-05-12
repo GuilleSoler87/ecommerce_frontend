@@ -31,6 +31,13 @@ const products = (state, action) => {
                 ...state,
                 cart: [],
             };
+        case "REMOVE_FROM_CART":
+            const productId = action.payload;
+            const updatedCart = state.cart.filter((product) => product.id !== productId);
+            return {
+                ...state,
+                cart: updatedCart,
+            };
 
 
         default:

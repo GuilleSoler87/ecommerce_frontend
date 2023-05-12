@@ -31,10 +31,10 @@ const Products = () => {
         {products.map((product) => (
           <div key={product.id}>
             <Card
-              style={{ width: 300 }}
+              style={{ width: 400 }}
               cover={<img alt={product.name} src={"http://localhost:8080/" + product.image} />}
               actions={[
-                <button className="button_chars_prod"><Link to={'/' + product.id}><span>Características</span></Link></button>,
+                <button className="button_chars_prod"><Link to={'/' + product.id}><span>Ver detalle</span></Link></button>,
                 <button className='button_cart' onClick ={() => addCart(product)}><img src={Carrito} alt="carrito"/></button>,
               ]}
             >

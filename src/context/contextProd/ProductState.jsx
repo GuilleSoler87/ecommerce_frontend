@@ -77,6 +77,13 @@ export const ProductProvider = ({ children, token }) => { // Agregado el paráme
     });
   };
 
+  const removeProduct = (productId) => {
+    dispatch({
+      type: "REMOVE_FROM_CART",
+      payload: productId,
+    });
+  };
+
   return (
     <ProductContext.Provider
       value={{
@@ -89,7 +96,8 @@ export const ProductProvider = ({ children, token }) => { // Agregado el paráme
         getProductId,
         updateProductId,
         addCart,
-        clearCart
+        clearCart,
+        removeProduct
       }}
     >
       {children}
