@@ -8,17 +8,25 @@ import "./Cart.scss";
 const { Meta } = Card;
 
 const Cart = () => {
-  const { cart, clearCart, removeProduct, addCart } = useContext(ProductContext);
+  const { cart, clearCart, removeProduct } = useContext(ProductContext);
   const { createOrder } = useContext(OrdersContext);
 
   const orderFinish = () => {
-    createOrder(cart);
-    setTimeout(() => {
-      clearCart();
-    }, 1000);
-    notification.success({
-      message: "Pedido realizado",
-    });
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      createOrder(cart);
+      setTimeout(() => {
+        clearCart();
+      }, 1000);
+      notification.success({
+        message: "Pedido realizado",
+      });
+    } else {
+      notification.error({
+        message: "Es necesario estar logeado",
+      });
+    }
   };
 
   if (cart.length < 1) {
@@ -55,8 +63,8 @@ const Cart = () => {
           ))}
         </div>
         <div className="management_cart">
-        <button className="clear_cart" onClick={() => clearCart()}>Vaciar cesta</button>
-        <Link to="/products"><button className="go_prod_buy"><span>Seguir comprando</span></button></Link>
+          <button className="clear_cart" onClick={() => clearCart()}>Vaciar cesta</button>
+          <Link to="/products"><button className="go_prod_buy"><span>Seguir comprando</span></button></Link>
         </div>
       </div>
       <div className="card_resume">
