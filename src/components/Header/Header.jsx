@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import "./Header.css";
+import "./Header.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { Avatar, notification, Badge } from "antd";
 import Logo from "../../assets/Logo ECOMMERCE ANIMAZON.png";

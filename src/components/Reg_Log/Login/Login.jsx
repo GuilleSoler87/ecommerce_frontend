@@ -2,7 +2,7 @@ import React, { useContext, useEffect} from 'react';
 import { Button, Checkbox, Form, Input, notification } from 'antd';
 import { UserContext } from '../../../context/UserContext/UserState';
 import { useNavigate } from "react-router-dom";
-import './Login.css';
+import './Login.scss';
 
 const Login = () => {
   const { login, message, token } = useContext(UserContext);
