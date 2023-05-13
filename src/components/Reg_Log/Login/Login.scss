@@ -1,26 +1,27 @@
+@import "../../../colors";
 .login-container {
   margin-top: 40px;
   margin-left: -110px;
   padding-left: 0;
   max-width: 600px;
-}
 
-.form-item-label {
-  font-size: 20px;
-}
+  .form-item-label {
+    font-size: 20px;
+  }
 
-.ant-input {
-  font-size: 15px;
-}
+  .ant-input {
+    font-size: 15px;
+  }
 
-.ant-btn-primary {
-  font-size: 17px;
-  width: 120px;
-  height: 42px; /* Aumenta la altura del botón a 50 píxeles */
-  background-color: #3f51b5;
-  transition: background-color 0.3s ease-in-out;
-}
+  .ant-btn-primary {
+    font-size: 17px;
+    width: 120px;
+    height: 42px;
+    background-color: $bluebutton;
+    transition: background-color 0.3s ease-in-out;
 
-.ant-btn-primary:hover {
-  background-color: #eb7c36;
+    &:hover {
+      background-color: $orangeneral;
+    }
+  }
 }

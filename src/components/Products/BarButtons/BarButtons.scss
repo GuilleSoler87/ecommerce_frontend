@@ -1,3 +1,4 @@
+@import "../../../colors";
 .product-header {
   position: fixed;
   top: 81px;
@@ -9,26 +10,26 @@
   justify-content: flex-end;
   align-items: center;
   background-color: #333;
-}
 
-.create-product-btn {
-  background-color: #3f51b5;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 5px 16px;
-  font-size: 16px;
-  margin-left: 30px;
-  margin-right: 10px;
-  cursor: pointer;
-}
+  .create-product-btn {
+    background-color: $bluebutton;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 16px;
+    font-size: 16px;
+    margin-left: 30px;
+    margin-right: 10px;
+    cursor: pointer;
 
-.create-product-btn:hover {
-  background-color: #eb7c36;
-}
+    &:hover {
+      background-color: $orangeneral;
+    }
+  }
 
-.title-bar {
-  color: #fff;
-  font-size: 13px;
-  margin-right: 20px;
+  .title-bar {
+    color: #fff;
+    font-size: 13px;
+    margin-right: 20px;
+  }
 }
