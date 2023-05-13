@@ -4,7 +4,9 @@ import { ProductContext } from "../../context/contextProd/ProductState";
 import { Empty, notification, Card } from "antd";
 import { OrdersContext } from "../../context/OrderContext/OrderState";
 import Papelera from "../../assets/papelera.png";
+import Counter from "./Counter/Counter";
 import "./Cart.scss";
+
 const { Meta } = Card;
 
 const Cart = () => {
@@ -52,6 +54,7 @@ const Cart = () => {
               style={{ width: 300 }}
               cover={<img alt={product.name} src={"http://localhost:8080/" + product.image} />}
               actions={[
+                <Counter initialValue={1} incrementBy={1} />,
                 <button className='delete-button' onClick={() => handleDelete(product.id)}><img src={Papelera} alt="borrar" /></button>
               ]}
             >
@@ -70,7 +73,7 @@ const Cart = () => {
       <div className="card_resume">
         {cart.length > 0 && (
           <Card
-            title={<h3 style={{ fontSize: '20px', textAlign: 'left' }}>Resumen</h3>}
+            title={<h3 style={{ fontSize: '23px', textAlign: 'left' }}>Resumen</h3>}
             bordered={false}
             style={{
               width: 350,

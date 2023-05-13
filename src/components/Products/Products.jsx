@@ -11,6 +11,7 @@ import Carrito from "../../assets/carrito.png"
 import Papelera from "../../assets/papelera.png"
 
 
+
 const Products = () => {
   const { products, getProducts, deleteProduct, addCart } = useContext(ProductContext);
   const { user, getUserInfo } = useContext(UserContext);
@@ -39,8 +40,8 @@ const Products = () => {
               ]}
             >
               <Meta
-                title={product.name}
-                description={product.price} 
+                title={<div className="ant-card-meta-title">{product.name}</div>}
+                description={<div className="price-description">{product.price} €</div>}
               />
             </Card>
             <div className='div_butt_prod_adm'>

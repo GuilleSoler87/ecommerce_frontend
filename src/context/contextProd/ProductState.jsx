@@ -13,55 +13,78 @@ const initialState = {
 
 export const ProductContext = createContext(initialState);
 
-export const ProductProvider = ({ children, token }) => { // Agregado el parámetro `token`
+export const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(ProductReducer, initialState);
 
   const getProducts = async () => {
-    const res = await axios.get(API_URL + "products/getAllProdCat");
-    dispatch({
-      type: "GET_PRODUCTS",
-      payload: res.data,
-    });
+    try {
+      const res = await axios.get(API_URL + "products/getAllProdCat");
+      dispatch({
+        type: "GET_PRODUCTS",
+        payload: res.data,
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const deleteProduct = async (id) => {
-    await axios.delete(API_URL + "products/deleteById/" + id, {
-      headers: {
-        authorization: token,
-      },
-    });
-    dispatch({
-      type: "DELETE_PRODUCT",
-      payload: id
-    });
+    const token = JSON.parse(localStorage.getItem("token"));
+    try {
+      await axios.delete(API_URL+ "products/deleteById/" + id, {
+        headers: {
+          authorization: token,
+        },
+      });
+      dispatch({
+        type: "DELETE_PRODUCT",
+        payload: id,
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const addProduct = async (product) => {
-    const res = await axios.post(API_URL + "products/create", product, {
-      headers: {
-        authorization: token,
-      },
-    });
-    dispatch({
-      type: "ADD_PRODUCT",
-      payload: res.data.product,
-    });
+    const token = JSON.parse(localStorage.getItem("token"));
+    try {
+      const res = await axios.post(API_URL + "products/create", product, {
+        headers: {
+          authorization: token,
+        },
+      });
+      dispatch({
+        type: "ADD_PRODUCT",
+        payload: res.data.product,
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const getProductId = async (id) => {
-    const res = await axios.get(API_URL + "products/getById/" + id);
-    dispatch({
-      type: "GET_PRODUCT_ID",
-      payload: res.data,
-    });
+    try {
+      const res = await axios.get(API_URL + "products/getById/" + id);
+      dispatch({
+        type: "GET_PRODUCT_ID",
+        payload: res.data,
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const updateProductId = async (id, product) => {
-    await axios.put(API_URL + "products/updateProdById/" + id, product, {
-      headers: {
-        authorization: token,
-      },
-    });
+    const token = JSON.parse(localStorage.getItem("token"));
+    try {
+      await axios.put(API_URL + "products/updateProdById/" + id, product, {
+        headers: {
+          authorization: token,
+        },
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const addCart = (product) => {

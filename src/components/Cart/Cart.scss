@@ -22,7 +22,11 @@
     flex-grow: 1;
 }
 
-
+.product-price {
+    font-size: 20px;
+    font-weight: bold;
+    color:#eb7c36
+  }
 .delete-button {
     border: none;
     background: none;
@@ -35,6 +39,7 @@
     justify-content: center;
     align-items: center;
     margin: auto;
+    transition: background-color 0.3s ease;
 }
 
 .delete-button img {
@@ -45,6 +50,7 @@
 .delete-button:hover {
     background-color: #e11010;
 }
+
 
 .management_cart {
     display: flex;
@@ -103,7 +109,7 @@
 
 .total_title {
     text-align: initial;
-    font-size: 15px;
+    font-size: 17px;
     margin-top: 50px;
     margin-bottom: -20px;
 }
@@ -118,7 +124,7 @@
     padding: 5px 10px;
     border: none;
     background-color: #3f51b5;
-    font-size: 20px;
+    font-size: 18px;
     color:  white;
     transition: background-color 0.3s ease;
     bottom: 10px;

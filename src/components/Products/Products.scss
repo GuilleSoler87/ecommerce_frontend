@@ -18,19 +18,23 @@
     justify-content: center;
 }
 
-
-
-
+.price-description {
+    font-size: 30px;
+    font-weight: bold;
+    color:#eb7c36
+  }
+  
 .button_cart {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    margin-left: 130px;
     padding: 5px;
     border: none;
     background-color: #3f51b5;
-    width: 35px;
+    width: 33px;
     /* Ajusta el ancho del botón según tus necesidades */
-    height: 35px;
+    height: 33px;
     /* Ajusta la altura del botón según tus necesidades */
     transition: background-color 0.3s ease; /* Agrega una transición suave al cambio de color */
 }
@@ -45,12 +49,14 @@
     // margin-top: 3px;
 }
 .button_chars_prod {
+    width: 320px;
     display: inline-block;
     padding: 5px 10px;
     border: none;
     background-color: #3f51b5;
     text-decoration: none;
     transition: background-color 0.3s ease;
+    margin-left: 10px;
   }
   
   .button_chars_prod span {
