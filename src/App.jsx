@@ -16,8 +16,10 @@ import Cart from "./components/Cart/Cart";
 import { OrdersProvider } from "./context/OrderContext/OrderState";
 
 
+
 function App() {
   return (
+
     <BrowserRouter>
       <ProductProvider>
         <UserProvider>
@@ -34,7 +36,6 @@ function App() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/cart" element={<Cart />} />
               </Routes>
-              
             </OrdersProvider>
           </CategoryProvider>
         </UserProvider>

@@ -1,3 +1,4 @@
+@import "../../colors";
 .header-container {
     position: fixed;
     top: 0;
@@ -7,7 +8,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: #032544;
+    background-color: $darkblue;
     color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     z-index: 1;
@@ -23,7 +24,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    background-color: #032544;
+    background-color: $darkblue;
     padding-right: 50px;
   }
   
@@ -49,7 +50,7 @@
   .header-nav-link:hover,
   .header-nav-link2:hover,
   .header-nav-link.active {
-    color: #eb7c36;
+    color: $orangeneral;
   }
   
   @media (max-width: 768px) {
@@ -92,7 +93,7 @@
   }
   
   .header-search-button {
-    background-color: #3f51b5;
+    background-color: $bluebutton;
     color: white;
     font-size: 18px;
     width: 40px;
@@ -107,7 +108,7 @@
   }
   
   .header-search-button:hover {
-    background-color: #eb7c36;
+    background-color: $orangeneral;
   }
   
   .header-search-button img {

@@ -4,8 +4,9 @@ import { ProductContext } from "../../context/contextProd/ProductState";
 import { Empty, notification, Card } from "antd";
 import { OrdersContext } from "../../context/OrderContext/OrderState";
 import Papelera from "../../assets/papelera.png";
-import Counter from "./Counter/Counter";
+import Counter from "../../components/Products/Counter/Counter";
 import "./Cart.scss";
+import Footer from "../Footer/Footer";
 
 const { Meta } = Card;
 
@@ -84,6 +85,9 @@ const Cart = () => {
             <button className="button_order" onClick={() => orderFinish()}>Realizar Pedido</button>
           </Card>
         )}
+      </div>
+      <div>
+      <Footer/>
       </div>
     </div>
   );
