@@ -1,33 +1,32 @@
 @import "../../../colors";
+
 .counter-container {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -15px;
+  margin-bottom: -15px;
+
+  .counter-button {
+    background-color: $bluebutton;
+    width: 30px;
+    height: 30px;
+    border: none;
     justify-content: center;
-    border: 1px solid;
-    margin-top: -15px;
-    margin-bottom: -15px;
-  
-    .counter-button {
-      background-color: $bluebutton;
-      width: 30px;
-      height: 30px;
-      border: none;
-      justify-content: center;
-      color: white;
-      font-size: 10px;
-      margin: 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-  
-      &:hover {
-        background-color: $orangeneral;
-      }
-    }
-  
-    .counter-value {
-      font-size: 18px;
-      color: #000000;
+    color: white;
+    font-size: 10px;
+    margin: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: $orangeneral;
     }
   }
-  
+
+  .counter-value {
+    font-size: 18px;
+    color: #000000;
+  }
+}

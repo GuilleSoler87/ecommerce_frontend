@@ -1,13 +1,14 @@
 import { createContext, useReducer } from "react";
 import UserReducer from "./UserReducer.js";
-import axios from "axios"
+import axios from "axios";
 
 const token = JSON.parse(localStorage.getItem("token"));
 
 const initialState = {
   token: token ? token : null,
   user: null,
-  message:"",
+  users:[],
+  message: "",
   logoutMessage: ""
 };
 
@@ -18,46 +19,86 @@ export const UserContext = createContext(initialState);
 export const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(UserReducer, initialState);
 
-  const login = async (user) => {
-    const res = await axios.post(API_URL + "/users/login", user);
-
-    //guardamos el token en el estado
-    dispatch({
-      type: "LOGIN",
-      payload: res.data,
-    });
-
-    //guardamos el token en el local storage
-    if (res.data) {
-      localStorage.setItem("token", JSON.stringify(res.data.token));
+  const createUser = async (newUser) => {
+    try {
+      const res = await axios.post(API_URL + "/users/createUser", newUser);
+      dispatch({
+        type: "CREATE_USER",
+        payload: res.data.user
+      });
+      console.log(res.data);
+      // Aquí puedes realizar alguna acción adicional o mostrar una notificación de éxito
+    } catch (error) {
+      console.error(error);
+      // Aquí puedes manejar el error, mostrar una notificación de error, etc.
     }
   };
-  const getUserInfo= async()=>{
-    const token = JSON.parse(localStorage.getItem("token"))
-    const res = await axios.get(`${API_URL}/users/getUserOrders`,{
-        headers:{
-            Authorization:token
+
+  const login = async (user) => {
+    try {
+      const res = await axios.post(API_URL + "/users/login", user);
+
+      // Guardamos el token en el estado
+      dispatch({
+        type: "LOGIN",
+        payload: res.data
+      });
+
+      // Guardamos el token en el localStorage
+      if (res.data && res.data.token) {
+        localStorage.setItem("token", JSON.stringify(res.data.token));
+      }
+    } catch (error) {
+      console.error(error);
+      dispatch({
+        type: "LOGIN_ERROR",
+        payload: "Error al iniciar sesión. Por favor, verifica tus credenciales."
+      });
+    }
+  };
+
+  const getUserInfo = async () => {
+    try {
+      const token = JSON.parse(localStorage.getItem("token"));
+      const res = await axios.get(API_URL + "/users/getUserOrders", {
+        headers: {
+          Authorization: token
         }
-    })
-    dispatch({
-        type:"GET_USER_INFO",
-        payload:res.data
-    })
-  }
+      });
+      dispatch({
+        type: "GET_USER_INFO",
+        payload: res.data
+      });
+    } catch (error) {
+      console.error(error);
+      dispatch({
+        type: "GET_USER_INFO_ERROR",
+        payload: "Error al obtener la información del usuario."
+      });
+    }
+  };
+
   const logout = async () => {
-    const token = JSON.parse(localStorage.getItem("token"));
-    const res = await axios.delete(API_URL + "/users/logout",  
-    {
-      headers: {
-        authorization: token,
-      },
-    });
-    dispatch({
-      type: "LOGOUT",
-      payload: res.data,
-    });
-    if (res.data) {
-      localStorage.removeItem("token");
+    try {
+      const token = JSON.parse(localStorage.getItem("token"));
+      const res = await axios.delete(API_URL + "/users/logout", {
+        headers: {
+          Authorization: token
+        }
+      });
+      dispatch({
+        type: "LOGOUT",
+        payload: res.data
+      });
+      if (res.data) {
+        localStorage.removeItem("token");
+      }
+    } catch (error) {
+      console.error(error);
+      dispatch({
+        type: "LOGOUT_ERROR",
+        payload: "Error al cerrar sesión."
+      });
     }
   };
 
@@ -68,6 +109,7 @@ export const UserProvider = ({ children }) => {
         user: state.user,
         message: state.message,
         logoutMessage: state.logoutMessage,
+        createUser,
         login,
         getUserInfo,
         logout

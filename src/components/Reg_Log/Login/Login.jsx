@@ -75,7 +75,7 @@ const Login = () => {
             },
           ]}
         >
-          <Input className='ant-input' />
+          <Input className='ant-input' placeholder="Introduce tu correo electrónico" />
         </Form.Item>
 
         <Form.Item
@@ -88,7 +88,7 @@ const Login = () => {
             },
           ]}
         >
-          <Input.Password className='ant-input' />
+          <Input.Password className='ant-input' placeholder="Introduce tu contraseña" />
         </Form.Item>
 
         <Form.Item
