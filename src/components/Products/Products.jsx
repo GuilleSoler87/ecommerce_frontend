@@ -34,7 +34,7 @@ const Products = () => {
           {products.map((product) => (
             <div key={product.id}>
               <Card
-                style={{ width: 400 }}
+                style={{ width: 300 }}
                 cover={<img alt={product.name} src={"http://localhost:8080/" + product.image} />}
                 actions={[
                   <button className="button_chars_prod"><Link to={'/' + product.id}><span>Ver detalle</span></Link></button>,

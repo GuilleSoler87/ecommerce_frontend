@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ProductContext } from "../../../context/contextProd/ProductState";
 import { CategoryContext } from "../../../context/categoryContext/CategoryState";
 import Select from "react-select";
+import { notification } from "antd";
+import "./EditProduct.scss";
 
 const EditProduct = () => {
   const { product, getProductId, updateProductId } = useContext(ProductContext);
@@ -28,6 +30,14 @@ const EditProduct = () => {
     }
   }, [product]);
 
+  useEffect(() => {
+    if (message) {
+      notification.success({
+        message: "Producto actualizado con éxito",
+      });
+    }
+  }, [message]);
+
   const options = [
     { value: 1, label: "Funkos" },
     { value: 2, label: "One Piece" },
@@ -47,7 +57,7 @@ const EditProduct = () => {
 
     updateProductId(id, formData)
       .then((res) => {
-        setMessage("Producto actualizado exitosamente");
+        setMessage("Producto actualizado exitosamente!");
         setTimeout(() => {
           navigate("/products");
         }, 1000);
@@ -66,44 +76,46 @@ const EditProduct = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>
-          Nombre de Producto:
+    <div>
+      <h2>Editar producto</h2>
+      <form className="form-container" onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="name">Nombre de Producto:</label>
           <input
             type="text"
+            id="name"
+            className="form-input"
             onChange={(e) => setName(e.target.value)}
             value={name || ""}
             name="name"
           />
-        </label>
-      </div>
-      <div>
-        <label>
-          Precio:
+        </div>
+        <div className="form-group">
+          <label htmlFor="price">Precio:</label>
           <input
             type="number"
+            id="price"
+            className="form-input"
             onChange={(e) => setPrice(e.target.value)}
             value={price || ""}
             name="price"
           />
-        </label>
-      </div>
-      <div>
-        <label>
-          Descripción:
+        </div>
+        <div className="form-group">
+          <label htmlFor="description">Descripción:</label>
           <textarea
-            type="text"
+            id="description"
+            className="form-input"
             onChange={(e) => setDescription(e.target.value)}
             value={description || ""}
             name="description"
           ></textarea>
-        </label>
-      </div>
-      <div>
-        <label>
-          Categoría:
+        </div>
+        <div className="form-group">
+          <label htmlFor="categoryId">Categoría:</label>
           <Select
+            id="categoryId"
+            className="form-select"
             isMulti
             name="categoryId"
             options={options}
@@ -112,22 +124,23 @@ const EditProduct = () => {
             )}
             onChange={handleChange}
           />
-        </label>
-      </div>
-      <div>
-        <label>
-          Imagen:
+        </div>
+        <div className="form-group2">
+          <label htmlFor="imageProduct">Imagen:</label>
           <input
             type="file"
+            id="imageProduct"
+            className="form-file"
             name="imageProduct"
             accept=".jpg,.png,.jpeg"
             onChange={handleImageChange}
           />
-        </label>
-      </div>
-      <button type="submit">Editar</button>
-      <h1>{message}</h1>
-    </form>
+        </div>
+        <button type="submit" className="form-button">Editar</button>
+        <h1 className="form-message">{message}</h1>
+      </form>
+    </div>
   );
 };
+
 export default EditProduct;

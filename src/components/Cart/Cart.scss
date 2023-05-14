@@ -8,7 +8,11 @@
   margin-bottom: 120px;
 
   .cart_container {
-    width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;    
 
     .cart-content {
       display: flex;

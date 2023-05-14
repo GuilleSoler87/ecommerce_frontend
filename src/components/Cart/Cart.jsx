@@ -61,7 +61,7 @@ const Cart = () => {
               return (
                 <Card
                   key={`${product.id}-${index}`}
-                  style={{ width: 300 }}
+                  style={{ width: 250 }}
                   cover={<img alt={product.name} src={"http://localhost:8080/" + product.image} />}
                   actions={[
                     <Counter initialValue={1} incrementBy={1} />,
