@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ProductContext } from "../../context/contextProd/ProductState";
-import { Empty, notification, Card } from "antd";
+import { Empty, notification, Card, Image } from "antd";
 import { OrdersContext } from "../../context/OrderContext/OrderState";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import Papelera from "../../assets/papelera.png";
@@ -62,7 +62,7 @@ const Cart = () => {
                 <Card
                   key={`${product.id}-${index}`}
                   style={{ width: 250 }}
-                  cover={<img alt={product.name} src={"http://localhost:8080/" + product.image} />}
+                  cover={<Image alt={product.name} src={"http://localhost:8080/" + product.image} />}
                   actions={[
                     <Counter initialValue={1} incrementBy={1} />,
                     <button className='delete-button' onClick={() => handleDelete(product.id)}>

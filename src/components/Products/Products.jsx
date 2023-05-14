@@ -3,7 +3,7 @@ import { ProductContext } from '../../context/contextProd/ProductState';
 import "./Products.scss"
 import { Link, useNavigate } from "react-router-dom";
 import BarButtons from './BarButtons/Barbuttons';
-import { Card, Avatar } from 'antd';
+import { Card, Image } from 'antd';
 import { SettingOutlined, EditOutlined, EllipsisOutlined } from '@ant-design/icons';
 import { UserContext } from '../../context/UserContext/UserState';
 const { Meta } = Card;
@@ -35,7 +35,7 @@ const Products = () => {
             <div key={product.id}>
               <Card
                 style={{ width: 300 }}
-                cover={<img alt={product.name} src={"http://localhost:8080/" + product.image} />}
+                cover={<Image alt={product.name} src={"http://localhost:8080/" + product.image} />}
                 actions={[
                   <button className="button_chars_prod"><Link to={'/' + product.id}><span>Ver detalle</span></Link></button>,
                   <button className='button_cart' onClick={() => addCart(product)}><img src={Carrito} alt="carrito" /></button>,
