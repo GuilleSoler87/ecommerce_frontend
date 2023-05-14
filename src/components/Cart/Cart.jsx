@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ProductContext } from "../../context/contextProd/ProductState";
-import { Empty, notification, Card, Image } from "antd";
+import { Empty, notification, Card, } from "antd";
 import { OrdersContext } from "../../context/OrderContext/OrderState";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import Papelera from "../../assets/papelera.png";
@@ -35,8 +35,7 @@ const Cart = () => {
 
   const calculateTotalPrice = () => {
     const totalPrice = cart.reduce((accumulator, product) => {
-      const productCount = getProductCount(product.id);
-      return accumulator + product.price * parseInt(productCount);
+      return accumulator + product.price;
     }, 0);
     return totalPrice;
   };
@@ -47,7 +46,7 @@ const Cart = () => {
 
   const getProductCount = (productId) => {
     const count = cart.filter((product) => product.id === productId).length;
-    return count;
+    return count > 1 ? `(${count})` : "";
   };
 
   return (
@@ -55,30 +54,22 @@ const Cart = () => {
       <div className="cart_container">
         <div className="cart-content">
           {cart.length > 0 ? (
-            cart.map((product, index) => {
-              const productCount = getProductCount(product.id);
-              const totalPrice = product.price * parseInt(productCount);
-
-              return (
-                <Card
-                  key={`${product.id}-${index}`}
-                  style={{ width: 250 }}
-                  cover={<Image alt={product.name} src={"http://localhost:8080/" + product.image} />}
-                  actions={[
-                    <Counter initialValue={1} incrementBy={1} />,
-                    <button className='delete-button' onClick={() => handleDelete(product.id)}>
-                      <img src={Papelera} alt="borrar" />
-                    </button>
-                  ]}
-                >
-                  <Meta
-                    title={<div className="product-name">{product.name} {productCount}</div>}
-                    description={<div className="product-price">{totalPrice} €</div>}
-                    
-                  />
-                </Card>
-              );
-            })
+            cart.map((product, index) => (
+              <Card
+                key={`${product.id}-${index}`}
+                style={{ width: 300 }}
+                cover={<Image alt={product.name} src={"http://localhost:8080/" + product.image} />}
+                actions={[
+                  <Counter initialValue={1} incrementBy={1} />,
+                  <button className='delete-button' onClick={() => handleDelete(product.id)}><img src={Papelera} alt="borrar" /></button>
+                ]}
+              >
+                <Meta
+                  title={<div className="product-name">{product.name} {getProductCount(product.id)}</div>}
+                  description={<div className="product-price">{product.price} €</div>}
+                />
+              </Card>
+            ))
           ) : (
             <Empty
               description={
@@ -128,5 +119,3 @@ const Cart = () => {
 }
 
 export default Cart;
-
-

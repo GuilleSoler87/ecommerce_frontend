@@ -56,7 +56,7 @@
         }
       }
     }
-
+      
     .management_cart {
       display: flex;
       justify-content: center;
@@ -97,47 +97,7 @@
         }
       }
     }
-
-    .card_resume {
-      margin-top: 150px;
-      width: 300px;
-      margin-right: 50px;
-      margin-left: 150px;
-      position: relative;
-
-      .resume_title {
-        text-align: initial;
-        font-size: 30px;
-      }
-
-      .total_title {
-        text-align: initial;
-        font-size: 17px;
-        margin-top: 50px;
-        margin-bottom: -20px;
-      }
-
-      .total_price {
-        font-size: 30px;
-        font-weight: bold;
-      }
-
-      .button_order {
-        display: inline-block;
-        padding: 5px 10px;
-        border: none;
-        background-color: $bluebutton;
-        font-size: 18px;
-        color: white;
-        transition: background-color 0.3s ease;
-        bottom: 10px;
-        width: 100%;
-
-        &:hover {
-          background-color: $orangeneral;
-        }
-      }
-    }
+    
   }
 }
 
@@ -179,8 +139,8 @@
   .card_resume {
     margin-top: 150px;
     width: 300px;
-    margin-right: 50px;
-    margin-left: 150px;
+    margin-right: 40px;
+    margin-left: 100px;
     position: relative;
   
     .resume_title {
