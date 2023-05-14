@@ -14,6 +14,8 @@ import { CategoryProvider } from "./context/categoryContext/CategoryState";
 import Profile from "./components/Profile/Profile";
 import Cart from "./components/Cart/Cart";
 import { OrdersProvider } from "./context/OrderContext/OrderState";
+import SingleProduct from "./components/Products/SingleProduct/SingleProduct";
+import { ReviewProvider } from "./context/ReviewContext/ReviewState";
 
 
 
@@ -25,17 +27,20 @@ function App() {
         <UserProvider>
           <CategoryProvider>
             <OrdersProvider>
-              <Header />
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/products" element={<Products />} />
-                <Route path="/updateProduct/:id" element={<EditProduct />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/access" element={<Reg_log />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/cart" element={<Cart />} />
-              </Routes>
+              <ReviewProvider>
+                <Header />
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/products" element={<Products />} />
+                  <Route path="/updateProduct/:id" element={<EditProduct />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/access" element={<Reg_log />} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/cart" element={<Cart />} />
+                  <Route path="/getById/:id" element={<SingleProduct />} />
+                </Routes>
+              </ReviewProvider>
             </OrdersProvider>
           </CategoryProvider>
         </UserProvider>

@@ -35,7 +35,8 @@ const Cart = () => {
 
   const calculateTotalPrice = () => {
     const totalPrice = cart.reduce((accumulator, product) => {
-      return accumulator + product.price;
+      const productCount = getProductCount(product.id);
+      return accumulator + product.price * parseInt(productCount);
     }, 0);
     return totalPrice;
   };

@@ -38,8 +38,7 @@ const products = (state, action) => {
                 ...state,
                 cart: updatedCart,
             };
-
-
+       
         default:
             return state;
     }

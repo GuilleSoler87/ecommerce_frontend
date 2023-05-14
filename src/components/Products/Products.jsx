@@ -37,7 +37,7 @@ const Products = () => {
                 style={{ width: 300 }}
                 cover={<Image alt={product.name} src={"http://localhost:8080/" + product.image} />}
                 actions={[
-                  <button className="button_chars_prod"><Link to={'/' + product.id}><span>Ver detalle</span></Link></button>,
+                  <button className="button_chars_prod"><Link to={`/getById/${product.id}`}><span>Ver detalle</span></Link></button>,
                   <button className='button_cart' onClick={() => addCart(product)}><img src={Carrito} alt="carrito" /></button>,
                 ]}
               >

@@ -1,10 +1,10 @@
 import { createContext, useReducer } from 'react';
 import axios from 'axios';
-import ProductReducer from "./ProductReducer";
+import ProductReducer from './ProductReducer';
 
-const API_URL = "http://localhost:8080/";
+const API_URL = 'http://localhost:8080/';
 
-const cart = JSON.parse(localStorage.getItem("cart")) || [];
+const cart = JSON.parse(localStorage.getItem('cart')) || [];
 const initialState = {
   products: [],
   product: {},
@@ -18,9 +18,9 @@ export const ProductProvider = ({ children }) => {
 
   const getProducts = async () => {
     try {
-      const res = await axios.get(API_URL + "products/getAllProdCat");
+      const res = await axios.get(API_URL + 'products/getAllProdCat');
       dispatch({
-        type: "GET_PRODUCTS",
+        type: 'GET_PRODUCTS',
         payload: res.data,
       });
     } catch (error) {
@@ -29,15 +29,15 @@ export const ProductProvider = ({ children }) => {
   };
 
   const deleteProduct = async (id) => {
-    const token = JSON.parse(localStorage.getItem("token"));
+    const token = JSON.parse(localStorage.getItem('token'));
     try {
-      await axios.delete(API_URL+ "products/deleteById/" + id, {
+      await axios.delete(API_URL + 'products/deleteById/' + id, {
         headers: {
           authorization: token,
         },
       });
       dispatch({
-        type: "DELETE_PRODUCT",
+        type: 'DELETE_PRODUCT',
         payload: id,
       });
     } catch (error) {
@@ -46,15 +46,15 @@ export const ProductProvider = ({ children }) => {
   };
 
   const addProduct = async (product) => {
-    const token = JSON.parse(localStorage.getItem("token"));
+    const token = JSON.parse(localStorage.getItem('token'));
     try {
-      const res = await axios.post(API_URL + "products/create", product, {
+      const res = await axios.post(API_URL + 'products/create', product, {
         headers: {
           authorization: token,
         },
       });
       dispatch({
-        type: "ADD_PRODUCT",
+        type: 'ADD_PRODUCT',
         payload: res.data.product,
       });
     } catch (error) {
@@ -64,9 +64,9 @@ export const ProductProvider = ({ children }) => {
 
   const getProductId = async (id) => {
     try {
-      const res = await axios.get(API_URL + "products/getById/" + id);
+      const res = await axios.get(API_URL + 'products/getById/' + id);
       dispatch({
-        type: "GET_PRODUCT_ID",
+        type: 'GET_PRODUCT_ID',
         payload: res.data,
       });
     } catch (error) {
@@ -75,9 +75,9 @@ export const ProductProvider = ({ children }) => {
   };
 
   const updateProductId = async (id, product) => {
-    const token = JSON.parse(localStorage.getItem("token"));
+    const token = JSON.parse(localStorage.getItem('token'));
     try {
-      await axios.put(API_URL + "products/updateProdById/" + id, product, {
+      await axios.put(API_URL + 'products/updateProdById/' + id, product, {
         headers: {
           authorization: token,
         },
@@ -89,23 +89,24 @@ export const ProductProvider = ({ children }) => {
 
   const addCart = (product) => {
     dispatch({
-      type: "ADD_CART",
+      type: 'ADD_CART',
       payload: product,
     });
   };
 
   const clearCart = () => {
     dispatch({
-      type: "CLEAR_CART",
+      type: 'CLEAR_CART',
     });
   };
 
   const removeProduct = (productId) => {
     dispatch({
-      type: "REMOVE_FROM_CART",
+      type: 'REMOVE_FROM_CART',
       payload: productId,
     });
   };
+
 
   return (
     <ProductContext.Provider
@@ -120,10 +121,11 @@ export const ProductProvider = ({ children }) => {
         updateProductId,
         addCart,
         clearCart,
-        removeProduct
+        removeProduct,
       }}
     >
       {children}
     </ProductContext.Provider>
   );
 };
+
