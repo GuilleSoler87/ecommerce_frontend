@@ -3,6 +3,32 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+ 
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.app-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-image: url(${wallpaper});
+  background-repeat: repeat-y;
+  background-size: cover;
 }
 
 .logo {

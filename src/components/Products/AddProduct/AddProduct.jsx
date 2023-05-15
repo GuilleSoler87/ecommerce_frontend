@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { ProductContext } from "../../../context/contextProd/ProductState";
 import { CategoryContext } from "../../../context/categoryContext/CategoryState";
-import Select from "react-select";
+import { Select, Space } from 'antd';
 import "./AddProduct.scss"
 
 const AddProduct = () => {
@@ -11,12 +11,19 @@ const AddProduct = () => {
   const [categoryId, setCategoryId] = useState([]);
   const [image, setImage] = useState(null);
   const { addProduct } = useContext(ProductContext);
-  const { categories,getCategories } = useContext(CategoryContext);
+  const { categories, getCategories } = useContext(CategoryContext);
 
-useEffect (() => {
-  getCategories ()
-},[])
+  useEffect(() => {
+    getCategories()
+  }, [])
 
+  const options= categories.map(category => {
+    return {value:category.id,label:category.name}
+  })
+  const handleChange = (value) => {
+   setCategoryId(value)
+   console.log(value)
+  };
   // const options = [
   //   { value: 1, label: "Funkos" },
   //   { value: 2, label: "One Piece" },
@@ -25,9 +32,6 @@ useEffect (() => {
   //   { value: 5, label: "Resin" },
   // ];
 
-  const handleChange = (selectedOptions) => {
-    setCategoryId(selectedOptions.map((option) => option.id));
-  };
 
   const handleImageChange = (event) => {
     setImage(event.target.files[0]);
@@ -35,16 +39,20 @@ useEffect (() => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log(categoryId)
     const formData = new FormData();
     formData.append("name", name);
     formData.append("price", price);
     formData.append("description", description);
-    formData.append("categoryId", JSON.stringify(categoryId));
+    // formData.append("CategoryId", JSON.stringify(categoryId));
+    for (let i = 0; i < categoryId.length; i++) {
+    formData.append('CategoryId', categoryId[i]);
+}
     formData.append("image", image);
     addProduct(formData)
       .then((res) => {
         console.log("Product successfully uploaded");
-        window.location.reload(); // recarga la página
+        // window.location.reload(); // recarga la página
       })
       .catch((error) => {
         console.error(error);
@@ -96,17 +104,27 @@ useEffect (() => {
         <div className="form__group-addp">
           <label className="form__label--select-addp" htmlFor="category">
             <span>Categoría:</span>
-            <Select
-              isMulti
-              id="category"
-              name="categoryId"
-              options={categories}
-              value={categories.filter((option) =>
-                categoryId.includes(option.value)
-              )}
-              onChange={handleChange}
-              className="form__select-addp"
-            />
+            <Space
+              style={{
+                width: '100%',
+              }}
+              direction="vertical"
+            >
+              <Select
+                mode="multiple"
+                allowClear
+                style={{
+                  width: '100%',
+                  position:"relative",
+                  zIndex: 1
+                }}
+                placeholder="Please select"
+                defaultValue={categories.map(category=>category.name)}
+                onChange={handleChange}
+                options={options}
+              />
+
+            </Space>
           </label>
         </div>
         <div className="form__group-addp">

@@ -41,13 +41,13 @@ const Profile = () => {
             <b>Email:</b> {user.email}
           </p>
         </Card>
-        <h2>Orders</h2>
+        <h2>Historial de pedidos</h2>
         <Collapse>
           {user.Orders.map((order) => (
             <Panel header={order.createdAt} key={order.id}>
               {order.Products.map((product) => (
                 <p key={product.id}>
-                  {product.name} {product.price} €
+                  {product.name} <b>{product.price} €</b>
                 </p>
               ))}
             </Panel>

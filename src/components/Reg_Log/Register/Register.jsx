@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Button, Form, Input, notification } from 'antd';
-import './Register.scss';
 import { UserContext } from '../../../context/UserContext/UserState';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import './Register.scss';
 
 const Register = () => {
   const { createUser } = useContext(UserContext);
@@ -13,43 +13,52 @@ const Register = () => {
   const [successfulRegistration, setSuccessfulRegistration] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = () => {
-    createUser({
-      name,
-      email,
-      password,
-      confirmPassword
-    });
-  };
-
-  useEffect(() => {
-    if (successfulRegistration) {
-      // Restablecer los valores de los campos a sus valores iniciales
-      setName('');
-      setEmail('');
-      setPassword('');
-      setConfirmPassword('');
-
-      // Mostrar notificación de éxito
-      notification.success({
-        message: 'Registro exitoso',
-        description: 'El registro se ha realizado correctamente.'
+  const handleSubmit = async () => {
+    if (password !== confirmPassword) {
+      notification.error({
+        message: 'Error',
+        description: 'Las contraseñas no coinciden',
       });
-
-      // Reiniciar el estado de successfulRegistration después de 1 segundo
-      setTimeout(() => {
-        setSuccessfulRegistration(false);
-        navigate("/access");
-      }, 1000);
+    } else {
+      try {
+        await createUser({
+          name,
+          email,
+          password,
+          confirmPassword,
+        });
+  
+        // Restablecer los valores de los campos a sus valores iniciales
+        setName('');
+        setEmail('');
+        setPassword('');
+        setConfirmPassword('');
+  
+        // Mostrar notificación de éxito
+        notification.success({
+          message: 'El registro se ha realizado correctamente.'          
+        });
+  
+        // Reiniciar el estado de successfulRegistration después de 1 segundo
+        setTimeout(() => {
+          setSuccessfulRegistration(false);
+          navigate('/access');
+        }, 1000);
+      } catch (error) {
+        // Manejar el error de registro
+        notification.error({
+          message: 'Error',
+          description: 'Hubo un error en el registro. Por favor, inténtalo nuevamente.',
+        });
+      }
     }
-  }, [successfulRegistration, navigate]);
-
+  };
   return (
     <div className="register-container">
       <Form
         labelCol={{
           span: 8,
-          className: 'form-item-label'
+          className: 'form-item-label',
         }}
         wrapperCol={{
           span: 16,
@@ -61,7 +70,7 @@ const Register = () => {
           remember: true,
         }}
         onFinish={handleSubmit}
-        autoComplete="off"
+        autoComplete="on"
       >
         <Form.Item
           label="Nombre"

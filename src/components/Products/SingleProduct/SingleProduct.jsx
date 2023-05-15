@@ -8,6 +8,7 @@ const SingleProduct = () => {
   const { getProductId, product } = useContext(ProductContext);
 
   useEffect(() => {
+    console.log("hola")
     getProductId(id);
   }, [id]);
 
@@ -24,18 +25,18 @@ const SingleProduct = () => {
       <p>Precio: {product.price}</p>
       <p>Descripción: {product.description}</p>
       <p>Categorías:</p>
-      {/* <ul>
-        {product.categories.map((category) => (
+      {/* {product.Categories?.map(category=> category.name) } */}
+      <ul>
+        {product.Categories?.map((category) => (
           <li key={category.id}>{category.name}</li>
         ))}
       </ul>
       <p>Reseñas:</p>
       <ul>
-        {product.reviews.map((review) => (
-          <li key={review.id}>{review.text}</li>
+        {product.Reviews?.map((review) => (
+          <li key={review.id}>{review.tittle} {review.comment}</li>
         ))}
       </ul>
-      Rest of the product information */}
     </div>
   );
 };

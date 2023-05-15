@@ -12,14 +12,14 @@ export const OrdersProvider = ({ children }) => {
     const cart = JSON.parse(localStorage.getItem("cart"));
     
     //BUCLE PARA SACAR LOS ID
-    const productIds = cart.map(product => product.id);
-    console.log(productIds)
+    const ProductId = cart.map(product => product.id);
+    console.log(ProductId)
 
     //BUCLE PARA SACAR LOS ID
     try {
       await axios.post(
         API_URL + "/orders/createOrder",
-        { productIds },  
+        { ProductId },  
         {
           headers: {
             authorization: token,
