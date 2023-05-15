@@ -9,9 +9,9 @@ const contentStyle = {
   width: '100%',
   height: '100%',
   objectFit: 'cover',
- };
+};
 
-const Carousel = () => {
+const ImageCarousel = () => {
   return (
     <div className='carousel-container'>
       <Carousel autoplay>
@@ -32,4 +32,4 @@ const Carousel = () => {
   );
 };
 
-export default Carousel;
+export default ImageCarousel;

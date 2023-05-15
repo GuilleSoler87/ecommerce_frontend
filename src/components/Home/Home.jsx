@@ -1,12 +1,27 @@
 import React from 'react'
-// import Carousel from '../Carousel/Carousel'
+import ImageCarousel from '../Carousel/Carousel'
+import Footer from '../Footer/Footer'
+import "./Home.scss"
+
 
 
 const Home = () => {
   return (
-    <div>Home
+    <div className='home_container'>
+      <span className='white_point'>.</span>
+      <div className= "carousel_home">
+        <ImageCarousel/>
+      </div>
       <div>
-        {/* <Carousel/> */}
+
+
+        
+
+
+
+      </div>
+      <div>
+        <Footer />
       </div>
     </div>
   )

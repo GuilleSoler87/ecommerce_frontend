@@ -2,12 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ProductContext } from "../../../context/contextProd/ProductState";
 import { CategoryContext } from "../../../context/categoryContext/CategoryState";
-import Select from "react-select";
+import { Select, Space } from 'antd';
 import { notification } from "antd";
 import "./EditProduct.scss";
 
 const EditProduct = () => {
   const { product, getProductId, updateProductId } = useContext(ProductContext);
+  const { categories, getCategories } = useContext(CategoryContext);
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
@@ -19,6 +20,7 @@ const EditProduct = () => {
 
   useEffect(() => {
     getProductId(id);
+    getCategories();
   }, []);
 
   useEffect(() => {
@@ -38,13 +40,13 @@ const EditProduct = () => {
     }
   }, [message]);
 
-  const options = [
-    { value: 1, label: "Funkos" },
-    { value: 2, label: "One Piece" },
-    { value: 3, label: "Merchandising" },
-    { value: 4, label: "Replica Weapons" },
-    { value: 5, label: "Resin" },
-  ];
+  const options = categories.map(category => {
+    return { value: category.id, label: category.name }
+  })
+  const handleChange = (value) => {
+    setCategoryId(value)
+    console.log(value)
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -52,7 +54,11 @@ const EditProduct = () => {
     formData.append("name", name);
     formData.append("price", price);
     formData.append("description", description);
-    formData.append("categoryId", JSON.stringify(categoryId));
+    if (Array.isArray(categoryId)) { // Verificar si categoryId es un array
+      for (let i = 0; i < categoryId.length; i++) {
+        formData.append('CategoryId', categoryId[i]);
+      }
+    }
     formData.append("image", image);
 
     updateProductId(id, formData)
@@ -69,10 +75,6 @@ const EditProduct = () => {
 
   const handleImageChange = (event) => {
     setImage(event.target.files[0]);
-  };
-
-  const handleChange = (selectedOptions) => {
-    setCategoryId(selectedOptions.map((option) => option.value));
   };
 
   return (
@@ -113,17 +115,26 @@ const EditProduct = () => {
         </div>
         <div className="form-group">
           <label htmlFor="categoryId">Categoría:</label>
-          <Select
-            id="categoryId"
-            className="form-select"
-            isMulti
-            name="categoryId"
-            options={options}
-            value={options.filter((option) =>
-              Array.isArray(categoryId) ? categoryId.includes(option.value) : false
-            )}
-            onChange={handleChange}
-          />
+          <Space
+            style={{
+              width: '100%',
+            }}
+            direction="vertical"
+          >
+            <Select
+              mode="multiple"
+              allowClear
+              style={{
+                width: '100%',
+                position: "relative",
+                zIndex: 1
+              }}
+              placeholder="Please select"
+              defaultValue={categories.map(category => category.name) || ""}
+              onChange={handleChange}
+              options={options}
+            />
+          </Space>
         </div>
         <div className="form-group2">
           <label htmlFor="imageProduct">Imagen:</label>

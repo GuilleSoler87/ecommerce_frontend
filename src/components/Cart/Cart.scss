@@ -12,7 +12,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: auto;    
+    margin: auto;
 
     .cart-content {
       display: flex;
@@ -28,7 +28,7 @@
         .product-price {
           font-size: 20px;
           font-weight: bold;
-          color: $orangeneral;
+          color: #FFA500;
         }
 
         .delete-button {
@@ -56,7 +56,7 @@
         }
       }
     }
-      
+
     .management_cart {
       display: flex;
       justify-content: center;
@@ -97,22 +97,28 @@
         }
       }
     }
-    
   }
-}
 
-.cart-item {
-  width: 200px;
-  flex-grow: 1;
-}
+  .img_noproducts {
+    background-color: white;
+  }
 
-.product-price {
-  font-size: 20px;
-  font-weight: bold;
-  color: $orangeneral;
-}
+  .no-products-icon {
+    background-color: white;
+  }
 
-.delete-button {
+  .cart-item {
+    width: 200px;
+    flex-grow: 1;
+  }
+
+  .product-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: $orangeneral;
+  }
+
+  .delete-button {
     border: none;
     background: none;
     cursor: pointer;
@@ -125,41 +131,41 @@
     align-items: center;
     margin: auto;
     transition: background-color 0.3s ease;
-  
+
     img {
       width: 12px;
       height: 17px;
     }
-  
+
     &:hover {
       background-color: $deletered2;
     }
   }
-  
+
   .card_resume {
     margin-top: 150px;
     width: 300px;
-    margin-right: 40px;
-    margin-left: 100px;
+    margin-right: 30px;
+    margin-left: 70px;
     position: relative;
-  
+
     .resume_title {
       text-align: initial;
       font-size: 30px;
     }
-  
+
     .total_title {
       text-align: initial;
       font-size: 17px;
       margin-top: 50px;
       margin-bottom: -20px;
     }
-  
+
     .total_price {
       font-size: 30px;
       font-weight: bold;
     }
-  
+
     .button_order {
       display: inline-block;
       padding: 5px 10px;
@@ -170,45 +176,45 @@
       transition: background-color 0.3s ease;
       bottom: 10px;
       width: 100%;
-  
+
       &:hover {
         background-color: $orangeneral;
       }
     }
   }
-  
+
   @media screen and (max-width: 768px) {
     .main_cart_container {
       width: 90vw;
-  
+
       .cart_container {
         width: 100%;
-  
+
         .cart-content {
           margin-top: 100px;
-  
+
           .cart-item {
             width: 100%;
-  
+
             .total_price {
               font-size: 20px;
             }
-  
+
             .button_order {
               font-size: 15px;
             }
           }
         }
-  
+
         .card_resume {
           width: 90%;
           margin-right: auto;
           margin-left: auto;
-  
+
           .total_price {
             font-size: 20px;
           }
-  
+
           .button_order {
             font-size: 15px;
           }
@@ -216,4 +222,10 @@
       }
     }
   }
-  
+}
+.card_container_imgno {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  top: 200px;
+}

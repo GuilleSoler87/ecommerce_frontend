@@ -17,21 +17,13 @@ const AddProduct = () => {
     getCategories()
   }, [])
 
-  const options= categories.map(category => {
-    return {value:category.id,label:category.name}
+  const options = categories.map(category => {
+    return { value: category.id, label: category.name }
   })
   const handleChange = (value) => {
-   setCategoryId(value)
-   console.log(value)
+    setCategoryId(value)
+    console.log(value)
   };
-  // const options = [
-  //   { value: 1, label: "Funkos" },
-  //   { value: 2, label: "One Piece" },
-  //   { value: 3, label: "Merchandising" },
-  //   { value: 4, label: "Replica Weapons" },
-  //   { value: 5, label: "Resin" },
-  // ];
-
 
   const handleImageChange = (event) => {
     setImage(event.target.files[0]);
@@ -44,15 +36,15 @@ const AddProduct = () => {
     formData.append("name", name);
     formData.append("price", price);
     formData.append("description", description);
-    // formData.append("CategoryId", JSON.stringify(categoryId));
     for (let i = 0; i < categoryId.length; i++) {
-    formData.append('CategoryId', categoryId[i]);
-}
+      formData.append('CategoryId', categoryId[i]);
+    }
     formData.append("image", image);
+
     addProduct(formData)
       .then((res) => {
         console.log("Product successfully uploaded");
-        // window.location.reload(); // recarga la página
+        window.location.reload(); // recarga la página
       })
       .catch((error) => {
         console.error(error);
@@ -115,11 +107,11 @@ const AddProduct = () => {
                 allowClear
                 style={{
                   width: '100%',
-                  position:"relative",
+                  position: "relative",
                   zIndex: 1
                 }}
-                placeholder="Please select"
-                defaultValue={categories.map(category=>category.name)}
+                placeholder="Selecciona una categoría"
+                defaultValue={categories.map(category => category.name)}
                 onChange={handleChange}
                 options={options}
               />
