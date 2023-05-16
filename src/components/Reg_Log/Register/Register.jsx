@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button, Form, Input, notification } from 'antd';
 import { UserContext } from '../../../context/UserContext/UserState';
 import { useNavigate } from 'react-router-dom';
@@ -6,56 +6,48 @@ import './Register.scss';
 
 const Register = () => {
   const { createUser } = useContext(UserContext);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [successfulRegistration, setSuccessfulRegistration] = useState(false);
+  const [form] = Form.useForm();
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    if (password !== confirmPassword) {
+    try {
+      const values = await form.validateFields();
+      if (values.password !== values.confirmPassword) {
+        throw new Error('Las contraseñas no coinciden');
+      }
+      if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(values.email)) {
+        throw new Error('Formato de correo inválido');
+      }
+
+      const res = await createUser(values);
+      console.log(res)
+      if (res) {
+        // Show success notification
+        notification.success({
+          message: 'El registro se ha realizado correctamente.',
+          description: 'Te hemos enviado un correo para confirmar el registro'
+        });
+        // Reset form fields
+        form.resetFields();
+
+        // Navigate to the access page
+        navigate('/access');
+      }
+
+
+    } catch (error) {
+      // Handle registration error
       notification.error({
         message: 'Error',
-        description: 'Las contraseñas no coinciden',
+        description: error.message || 'Hubo un error en el registro. Por favor, inténtalo nuevamente.',
       });
-    } else {
-      try {
-        await createUser({
-          name,
-          email,
-          password,
-          confirmPassword,
-        });
-  
-        // Restablecer los valores de los campos a sus valores iniciales
-        setName('');
-        setEmail('');
-        setPassword('');
-        setConfirmPassword('');
-  
-        // Mostrar notificación de éxito
-        notification.success({
-          message: 'El registro se ha realizado correctamente.'          
-        });
-  
-        // Reiniciar el estado de successfulRegistration después de 1 segundo
-        setTimeout(() => {
-          setSuccessfulRegistration(false);
-          navigate('/access');
-        }, 1000);
-      } catch (error) {
-        // Manejar el error de registro
-        notification.error({
-          message: 'Error',
-          description: 'Hubo un error en el registro. Por favor, inténtalo nuevamente.',
-        });
-      }
     }
   };
+
   return (
     <div className="register-container">
       <Form
+        form={form}
         labelCol={{
           span: 8,
           className: 'form-item-label',
@@ -65,9 +57,6 @@ const Register = () => {
         }}
         style={{
           maxWidth: 600,
-        }}
-        initialValues={{
-          remember: true,
         }}
         onFinish={handleSubmit}
         autoComplete="on"
@@ -82,12 +71,7 @@ const Register = () => {
             },
           ]}
         >
-          <Input
-            className="ant-input"
-            placeholder="Introduce tu nombre"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+          <Input className="ant-input" placeholder="Introduce tu nombre" />
         </Form.Item>
 
         <Form.Item
@@ -100,12 +84,7 @@ const Register = () => {
             },
           ]}
         >
-          <Input
-            className="ant-input"
-            placeholder="Introduce tu correo electrónico"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          <Input className="ant-input" placeholder="Introduce tu correo electrónico" />
         </Form.Item>
 
         <Form.Item
@@ -118,12 +97,7 @@ const Register = () => {
             },
           ]}
         >
-          <Input.Password
-            className="ant-input"
-            placeholder="Introduce tu contraseña"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <Input.Password className="ant-input" placeholder="Introduce tu contraseña" />
         </Form.Item>
 
         <Form.Item
@@ -136,20 +110,10 @@ const Register = () => {
             },
           ]}
         >
-          <Input.Password
-            className="ant-input"
-            placeholder="Confirma tu contraseña"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
+          <Input.Password className="ant-input" placeholder="Confirma tu contraseña" />
         </Form.Item>
 
-        <Form.Item
-          wrapperCol={{
-            offset: 8,
-            span: 16,
-          }}
-        >
+        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
           <Button type="primary" htmlType="submit" className="ant-btn-primary">
             Registrarse
           </Button>

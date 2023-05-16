@@ -9,20 +9,11 @@ import { UserOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { ProductContext } from "../../context/contextProd/ProductState";
 
 const Header = () => {
-  const { token, logout, logoutMessage} = useContext(UserContext);
+  const { token, logout, logoutMessage } = useContext(UserContext);
   const { cart } = useContext(ProductContext);
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (logoutMessage) {
-      navigate("/");
-      notification.success({
-        message: logoutMessage,
-      });
-    }
-  }, [logoutMessage]);
-  
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
@@ -49,12 +40,17 @@ const Header = () => {
           {token ? (
             <>
               <Link to="/profile" className="header-nav-link"><Avatar icon={<UserOutlined />} /></Link>
-              <span onClick={() => { logout(); navigate("/"); }} className="header-nav-link2">Logout</span>
+              <span onClick={() => {
+                logout();
+                notification.success({
+                  message: 'Usuario desconectado con éxito',
+                }); navigate("/");
+              }} className="header-nav-link2">Logout</span>
             </>
           ) : (
             <Link to="/access" className="header-nav-link">Mi cuenta</Link>
           )}
-          <Link to="/cart" className="header-nav-link"><ShoppingCartOutlined style={{ fontSize: "22px" }}/><Badge count={cart.length} style={{ marginTop: "-22px" }}></Badge></Link>
+          <Link to="/cart" className="header-nav-link"><ShoppingCartOutlined style={{ fontSize: "22px" }} /><Badge count={cart.length} style={{ marginTop: "-22px" }}></Badge></Link>
         </nav>
       </div>
     </div>

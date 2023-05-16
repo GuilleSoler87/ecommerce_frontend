@@ -34,10 +34,12 @@ const Login = () => {
     }
   
     if (message && !token) {
+      
       notification.error({
         message: message,
       });
     }
+    console.log("entras",message)
   }, [token, message]);
   
 

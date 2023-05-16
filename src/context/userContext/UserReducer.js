@@ -4,7 +4,6 @@ const users = (state, action) => {
       return {
         ...state,
         user: [action.payload, ...state.users],
-        message: "Usuario creado exitosamente"
       };
     case "LOGIN":
       return {
@@ -23,8 +22,18 @@ const users = (state, action) => {
         ...state,
         user: null,
         token: null,
-        logoutMessage: action.payload.message
+        message: "",
 
+      };
+    case "LOGIN_ERROR":
+      return {
+        ...state,
+        message: action.payload
+      };
+    case "CREATE_ERROR":
+      return {
+        ...state,
+        message: action.payload
       };
     default:
       return state;

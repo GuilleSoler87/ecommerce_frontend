@@ -7,7 +7,7 @@ const token = JSON.parse(localStorage.getItem("token"));
 const initialState = {
   token: token ? token : null,
   user: null,
-  users:[],
+  users: [],
   message: "",
   logoutMessage: ""
 };
@@ -27,17 +27,20 @@ export const UserProvider = ({ children }) => {
         payload: res.data.user
       });
       console.log(res.data);
+      return res.data
       // Aquí puedes realizar alguna acción adicional o mostrar una notificación de éxito
     } catch (error) {
       console.error(error);
-      // Aquí puedes manejar el error, mostrar una notificación de error, etc.
+      dispatch({
+        type: "CREATE_ERROR",
+        payload: error.response.data.messages
+      });
     }
   };
 
   const login = async (user) => {
     try {
       const res = await axios.post(API_URL + "/users/login", user);
-
       // Guardamos el token en el estado
       dispatch({
         type: "LOGIN",
@@ -52,7 +55,7 @@ export const UserProvider = ({ children }) => {
       console.error(error);
       dispatch({
         type: "LOGIN_ERROR",
-        payload: "Error al iniciar sesión. Por favor, verifica tus credenciales."
+        payload: error.response.data.message
       });
     }
   };

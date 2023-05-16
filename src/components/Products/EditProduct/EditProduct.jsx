@@ -51,6 +51,7 @@ const EditProduct = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+   
     const formData = new FormData();
     formData.append("name", name);
     formData.append("price", price);
@@ -131,7 +132,7 @@ const EditProduct = () => {
                 zIndex: 1
               }}
               placeholder="Please select"
-              defaultValue={categories.map(category => category.name) || ""}
+              defaultValue={product.Categories.map(category => category.name) || ""}
               onChange={handleChange}
               options={options}
             />
