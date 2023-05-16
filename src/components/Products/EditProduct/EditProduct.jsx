@@ -5,6 +5,7 @@ import { CategoryContext } from "../../../context/categoryContext/CategoryState"
 import { Select, Space } from 'antd';
 import { notification } from "antd";
 import "./EditProduct.scss";
+import Footer from "../../Footer/Footer";
 
 const EditProduct = () => {
   const { product, getProductId, updateProductId } = useContext(ProductContext);
@@ -150,6 +151,7 @@ const EditProduct = () => {
         <button type="submit" className="form-button">Editar</button>
         <h1 className="form-message">{message}</h1>
       </form>
+      <Footer/>
     </div>
   );
 };

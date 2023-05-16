@@ -1,1 +1,57 @@
 @import"../../colors";
+
+.page_container {
+    position: relative;
+    overflow-y: auto;
+    /* Ajusta la altura según tus necesidades */
+    top: 160px;
+    margin-bottom:300px;
+}
+
+.content_container {
+    width: 100%;
+    max-width: 1600px;
+    text-align: justify;
+}
+
+.title_about,
+.welcome_about{
+    text-align: center;
+}
+
+.company_presentation_wrapper {
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #efefef;
+    overflow-y: auto;
+    padding-bottom: 200px;
+    padding: 50px;
+    /* Ajusta según sea necesario para evitar el solapamiento del contenido con las imágenes */
+}
+
+.team_images {
+    margin-top: 80px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.person_image {
+    text-align: center;
+}
+
+.person_image img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.person_image p {
+    font-size: 13px;
+    color: #888;
+}
+
+
+.name_about {
+    margin-bottom: -10px;
+}

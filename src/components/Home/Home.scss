@@ -1,8 +1,126 @@
 @import "../../colors";
-.carousel_home{
-margin-top: -320px;
+
+.first_home {
+    position: relative;
+    overflow-y: auto;
+    /* Ajusta la altura según tus necesidades */
+    top: 90px;
 }
-.white_point{
+
+.main_home_cont {
+    position: sticky;
+    top: 0;
+    width: 100%;
+
+}
+
+.home_container {
+    padding-top: 270px;
+    width: 100%;
+    margin-bottom: 100px;
+}
+
+.carousel_home {
+    width: 100%;
+    height: 100%;
+    margin-top: -220px;
+}
+
+.white_point {
     color: white;
 }
 
+.blocks_container_home {
+    display: flex;
+    align-items: center;
+    /* Centra verticalmente los elementos */
+    gap: 20px;
+    /* Ajusta el espacio entre los elementos */
+    background-color: white;
+    margin-bottom: 30px;
+}
+
+.image_container_home {
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 52px;
+    margin-bottom: -5px;
+    /* Ajusta el tamaño de la imagen según tus necesidades */
+}
+
+.block_text {
+    width: 450px;
+    align-content: center;
+}
+
+.text_container_home {
+    text-align: left;
+    /* Centra el texto horizontalmente */
+    margin-right: 70px;
+}
+
+.blocks_container_home2 {
+    display: flex;
+    align-items: center;
+    /* Centra verticalmente los elementos */
+    gap: 20px;
+    /* Ajusta el espacio entre los elementos */
+    background-color: rgb(242, 240, 240);
+    margin-bottom: 30px;
+}
+
+.block_text2 {
+    max-width: 500px;
+    align-content: center;
+}
+
+.image_container_home2 {
+    width: 100%;
+    margin-left: 52px;
+    margin-right: -90px;
+    margin-bottom: -5px;
+    /* Ajusta el tamaño de la imagen según tus necesidades */
+}
+
+.text_container_home2 {
+    text-align: left;
+    /* Centra el texto horizontalmente */
+    margin-left: 90px;
+    margin-right: 45px;
+}
+.text_container_home4 {
+    text-align: left;
+    /* Centra el texto horizontalmente */
+    margin-left: -50px;
+    margin-right: 65px;
+}
+.blocks_container_home5 {
+    display: flex;
+    align-items: center;
+    /* Centra verticalmente los elementos */
+    gap: 20px;
+    /* Ajusta el espacio entre los elementos */
+    background-color: rgb(242, 240, 240);
+    margin-bottom: 150px;
+}
+.image_container_home3 {
+    width: 100%;
+    margin-left: 0px;
+    margin-right: -95px;
+    margin-bottom: -5px;
+    /* Ajusta el tamaño de la imagen según tus necesidades */
+}
+.image_container_home4 {
+    width: 100%;
+    margin-left: -250px;
+    margin-right: -95px;
+    margin-bottom: -5px;
+    /* Ajusta el tamaño de la imagen según tus necesidades */
+}
+.image_container_home5 {
+    width: 100%;
+    margin-left: 0px;
+    margin-right: -71px;
+    margin-bottom: -5px;
+    /* Ajusta el tamaño de la imagen según tus necesidades */
+}

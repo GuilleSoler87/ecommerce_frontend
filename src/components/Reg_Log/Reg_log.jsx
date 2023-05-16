@@ -5,6 +5,7 @@ import AccesoImg from "../../assets/acceso.jpg"
 import Registro from "./Register/Register"
 import Acceso from "./Login/Login"
 import { UserProvider } from '../../context/UserContext/UserState';
+import Footer from '../Footer/Footer';
 
 function Reg_log() {
   return (
@@ -17,6 +18,7 @@ function Reg_log() {
         <img src={RegistroImg} alt="Login" />
         <Registro />
       </div>
+      <Footer/>
     </div>
   );
 }
