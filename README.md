@@ -26,6 +26,39 @@ El diagrama que representa esta base de datos es la siguiente:
 
 ![Diagrama](./src/assets/diagrama.jpg)
 
+## Diseño🖌️
+
+### Index
+![Index](./src/assets/readme/index.jpg)
+
+### Animazon
+![Animazon](./src/assets/readme/about.jpg)
+
+### Tienda
+![Tienda](./src/assets/readme/shop.jpg)
+
+### Contacto
+![Contacto](./src/assets/readme/contact.jpg)
+
+### Carrito de compra
+![Carrito](./src/assets/readme/cart.jpg)
+
+### Perfil
+![Perfil](./src/assets/readme/profile.jpg)
+
+### Admin panel
+![Admin](./src/assets/readme/admin%20panel.jpg)
+
+### Acceso
+![Acceso](./src/assets/readme/access.jpg)
+
+### Menú individual producto
+![Producto](./src/assets/readme/singleview.jpg)
+
+### Reseñas
+![Reseñas](./src/assets/readme/reviews.jpg)
+
+
 ## Comenzando 🚀
 
 Para poder desplegar el proyecto correctamente, desde GitHub y con el acceso correspondiente al repositorio de la web, clonar el repositorio en su ordenador, también deberá instalar todas las herramientas, frameworks, y los middlewares para el funcionamiento correcto.
