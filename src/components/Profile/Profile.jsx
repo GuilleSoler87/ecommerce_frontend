@@ -1,8 +1,9 @@
 import React, { useContext, useEffect } from "react";
-import { UserContext } from "../../context/UserContext/UserState";
+import { UserContext } from "../../context/userContext/UserState";
 import { Card, Collapse, Spin } from "antd";
 import "./Profile.scss"; // Importa el archivo SCSS
 import Footer from "../Footer/Footer";
+import { AreaChartOutlined } from '@ant-design/icons';
 
 const { Panel } = Collapse;
 
@@ -45,17 +46,30 @@ const Profile = () => {
         <Collapse>
           {user.Orders.map((order) => (
             <Panel header={order.createdAt} key={order.id}>
-              {order.Products.map((product) => (
-                <p key={product.id}>
-                  {product.name} <b>{product.price} €</b>
+              <div className="text_container">
+                <b style={{ fontSize: "1.3em" }}>Productos:{" "}</b>
+                {order.Products.map((product) => (
+                  <p key={product.id}>
+                    {product.name} <b>{product.price} €</b>
+                  </p>
+                ))}
+                <p><AreaChartOutlined style={{ fontSize: "1.8em" }} />
+                  <b style={{ fontSize: "1.1em" }}>Total del Pedido:{" "}</b>
+                  <b style={{ fontSize: "1.4em" }}>
+                    {order.Products.reduce(
+                      (total, product) => total + product.price,
+                      0
+                    )}{" "}
+                    €
+                  </b>
                 </p>
-              ))}
-            </Panel>
+                </div>
+              </Panel>
           ))}
         </Collapse>
+      </div>
       <div>
         <Footer />
-      </div>
       </div>
     </div>
   );

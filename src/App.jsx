@@ -9,7 +9,7 @@ import Reg_log from "./components/Reg_Log/Reg_log";
 import EditProduct from "./components/Products/EditProduct/EditProduct"
 import "./App.css";
 import { ProductProvider } from "./context/contextProd/ProductState";
-import { UserProvider } from "./context/UserContext/UserState";
+import { UserProvider } from "./context/userContext/UserState";
 import { CategoryProvider } from "./context/categoryContext/CategoryState";
 import Profile from "./components/Profile/Profile";
 import Cart from "./components/Cart/Cart";

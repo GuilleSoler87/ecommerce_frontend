@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Avatar, notification, Badge } from "antd";
 import Logo from "../../assets/Logo ECOMMERCE ANIMAZON.png";
 import Lupa from "../../assets/lupa.png";
-import { UserContext } from "../../context/UserContext/UserState";
+import { UserContext } from "../../context/userContext/UserState";
 import { UserOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { ProductContext } from "../../context/contextProd/ProductState";
 

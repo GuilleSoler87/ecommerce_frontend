@@ -8,7 +8,7 @@ import Papelera from "../../assets/papelera.png";
 import Counter from "../../components/Products/Counter/Counter";
 import "./Cart.scss";
 import Footer from "../Footer/Footer";
-import emptyCartImage from "../../assets/ussopCart.png";
+
 
 const { Meta } = Card;
 

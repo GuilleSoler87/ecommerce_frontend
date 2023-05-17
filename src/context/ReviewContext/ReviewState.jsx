@@ -1,5 +1,5 @@
 import { createContext, useReducer } from "react"
-import ReviewReducer from "./ReviewReducer"
+import ReviewReducer from "./ReviewReducer.js"
 const API_URL = "http://localhost:8080/"
 import axios from "axios"
 
@@ -26,10 +26,28 @@ export const ReviewProvider = ({ children }) => {
 
         }
     }
+    const createReview = async (reviewData) => {
+        const token = JSON.parse(localStorage.getItem('token'))
+        try {
+            const res = await axios.post(API_URL + "reviews/create", reviewData, {
+                headers: {
+                    authorization: token,
+                },
+            });
+            dispatch({
+                type: "CREATE_REVIEW",
+                payload: res.data.review,
+            });
+            return res.data.review;
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (<ReviewContext.Provider value={{
         reviews: state.reviews,
-        getReviews
+        getReviews,
+        createReview
     }}>
         {children}
     </ReviewContext.Provider>

@@ -29,12 +29,9 @@ const Contact = () => {
                   Si la contestación a tu correo electrónico se demora más de 48 horas laborables, por favor llámanos por teléfono o vuelve a enviar tu consulta, puede que no hayamos recibido correctamente tu correo electrónico.
                 </p>
                 <h3>TIENDAS FÍSICAS EN VALENCIA:</h3>
-                <p>
-                  <p><b>Dirección:</b> <HomeOutlined /> Edificio Lanzadera, La Marina de, Carrer del Moll de la Duana, s/n, 46024 Valencia </p>
-                  <b>Lunes a Jueves:</b> 10:00 a 14:00 y de 16:00 a 20:30
-                  <br />
-                  <b>Viernes y Sábado:</b> 10:00 a 14:00 y de 16:00 a 21:00
-                </p>
+                <p><b>Dirección:</b> <HomeOutlined /> Edificio Lanzadera, La Marina de, Carrer del Moll de la Duana, s/n, 46024 Valencia </p>
+                <p><b>Lunes a Jueves:</b> 10:00 a 14:00 y de 16:00 a 20:30</p>
+                <p><b>Viernes y Sábado:</b> 10:00 a 14:00 y de 16:00 a 21:00</p>
                 <p><b>Teléfono tienda física:</b> 96 611 19 99 <PhoneOutlined /></p>
                 <p><b>Whatsapp:</b> 600.111.000 <WhatsAppOutlined /></p>
               </div>

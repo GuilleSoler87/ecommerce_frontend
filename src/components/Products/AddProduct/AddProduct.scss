@@ -9,9 +9,11 @@
   position: absolute;
   top: 46px;
   left: 0;
-  padding: 20px;
+  
 
   .form-addp {
+    margin-top:30px;
+    margin-bottom: -13px;
     display: flex;
     flex-wrap: wrap;
     width: 100%;
@@ -132,6 +134,8 @@
       font-size: 16px;
       color: #333;
       appearance: none;
+      z-Index: 100;
+      margin-bottom: -10px;
 
       option {
         color: #333;

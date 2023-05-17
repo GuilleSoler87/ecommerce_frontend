@@ -95,7 +95,7 @@ const AddProduct = () => {
         </div>
         <div className="form__group-addp">
           <label className="form__label--select-addp" htmlFor="category">
-            <span>Categoría:</span>
+            <b><span>Categoría:</span></b>
             <Space
               style={{
                 width: '100%',
@@ -108,7 +108,7 @@ const AddProduct = () => {
                 style={{
                   width: '100%',
                   position: "relative",
-                  zIndex: 1
+                  zIndex: 100
                 }}
                 placeholder="Selecciona una categoría"
                 defaultValue={categories.map(category => category.name)}
@@ -121,7 +121,7 @@ const AddProduct = () => {
         </div>
         <div className="form__group-addp">
           <label className="form__label--image-addp" htmlFor="image">
-            <span>Imagen:</span>
+            <b><span style={{ marginRight: '6px' }}>Imagen:</span></b>
             <input
               type="file"
               id="image"

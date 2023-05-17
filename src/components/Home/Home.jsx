@@ -88,7 +88,7 @@ const Home = () => {
 
         <div className='blocks_container_home5'>
           <div className='block_text2'>
-            <div className='text_container_home2'>
+            <div className='text_container_home5'>
               <h2>30 DÍAS PARA CAMBIOS Y DEVOLUCIONES</h2>
               <p>Si surge algún inconveniente o cambias de opinión, tendrás 30 días para hacer los cambios y devoluciones.</p>
             </div>

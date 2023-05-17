@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Button, Form, Input, notification } from 'antd';
-import { UserContext } from '../../../context/UserContext/UserState';
+import { UserContext } from '../../../context/userContext/UserState';
 import { useNavigate } from 'react-router-dom';
 import './Register.scss';
 

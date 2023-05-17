@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import BarButtons from './BarButtons/Barbuttons';
 import { Card, Image } from 'antd';
 import { SettingOutlined, EditOutlined, EllipsisOutlined } from '@ant-design/icons';
-import { UserContext } from '../../context/UserContext/UserState';
+import { UserContext } from '../../context/userContext/UserState';
 const { Meta } = Card;
 import Carrito from "../../assets/carrito.png"
 import Papelera from "../../assets/papelera.png"

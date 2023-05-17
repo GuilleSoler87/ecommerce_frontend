@@ -4,7 +4,7 @@ import RegistroImg from "../../assets/registro.jpg"
 import AccesoImg from "../../assets/acceso.jpg"
 import Registro from "./Register/Register"
 import Acceso from "./Login/Login"
-import { UserProvider } from '../../context/UserContext/UserState';
+import { UserProvider } from '../../context/userContext/UserState';
 import Footer from '../Footer/Footer';
 
 function Reg_log() {
