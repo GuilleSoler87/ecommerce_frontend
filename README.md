@@ -287,6 +287,10 @@ _Menciona las herramientas que utilizaste para crear tu proyecto_
 * [*POSTMAN*](https://www.postman.com/) - Herramienta para testear las API
 * [*MySQL Workbench*](https://www.mysql.com/products/workbench/) - Herramienta para crear y gestionar bases de datos
 * [*Ant-Design*](https://ant.design/) - Ant Design es una biblioteca de componentes de interfaz de usuario.
+* [*VSC-React*](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets) -  Atajos de código (snippets) predefinidos.
+* [*React-Devtools*](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=es) - Herramienta de desarrollo para la biblioteca de JavaScript React
+
+
 
 
 ## Versionado 📌
