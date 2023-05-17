@@ -33,17 +33,19 @@ const SingleProduct = () => {
       return;
     }
 
-    const formData = new FormData();
-    formData.append('tittle', tittle);
-    formData.append('comment', comment);
-    formData.append('UserId', user.id);
-    formData.append('ProductId', id);
+    const formData = {
+      tittle, comment, UserId: user.id, ProductId: id
+    };
+
 
     createReview(formData)
       .then(() => {
         notification.success({
           message: 'Reseña creada con éxito.',
         });
+        setTittle('');
+        setComment('');
+        getProductId(id);
       })
       .catch((error) => {
         console.error(error);
@@ -66,7 +68,7 @@ const SingleProduct = () => {
               </div>
               <div className='text_product_info'>
                 <h2 className='title_product_sing'>{product.name}</h2>
-                <p style={{ textAlign: 'right', fontSize: '1.8em' }}><b>{product.price}€</b></p>
+                <p style={{ textAlign: 'right', fontSize: '1.8em', color: '#eb7c36' }}><b>{product.price}€</b></p>
                 <p><b>Descripción:</b></p>
                 <p>{product.description}</p>
                 <div className='categories_info'>
@@ -86,7 +88,7 @@ const SingleProduct = () => {
               </button>
               <Link to='/products'>
                 <button className='go_prod_buy2'><span>Volver atrás</span></button>
-                </Link>
+              </Link>
             </div>
           </div>
         </div>

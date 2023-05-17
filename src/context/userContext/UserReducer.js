@@ -1,15 +1,12 @@
 const users = (state, action) => {
   switch (action.type) {
-    case "CREATE_USER":
-      return {
-        ...state,
-        user: [action.payload, ...state.users],
-      };
+    
     case "LOGIN":
       return {
         ...state,
         token: action.payload.token,
-        message: action.payload.message
+        message: action.payload.message,
+        user: action.payload.user
       };
     case "GET_USER_INFO":
       return {

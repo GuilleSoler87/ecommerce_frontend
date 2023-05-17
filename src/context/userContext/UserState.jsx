@@ -3,10 +3,11 @@ import UserReducer from "./UserReducer.js";
 import axios from "axios";
 
 const token = JSON.parse(localStorage.getItem("token"));
+const user = JSON.parse(localStorage.getItem("user"));
 
 const initialState = {
   token: token ? token : null,
-  user: null,
+  user: user ? user : null,
   users: [],
   message: "",
   logoutMessage: ""
@@ -22,11 +23,6 @@ export const UserProvider = ({ children }) => {
   const createUser = async (newUser) => {
     try {
       const res = await axios.post(API_URL + "/users/createUser", newUser);
-      dispatch({
-        type: "CREATE_USER",
-        payload: res.data.user
-      });
-      console.log(res.data);
       return res.data
       // Aquí puedes realizar alguna acción adicional o mostrar una notificación de éxito
     } catch (error) {
@@ -50,6 +46,9 @@ export const UserProvider = ({ children }) => {
       // Guardamos el token en el localStorage
       if (res.data && res.data.token) {
         localStorage.setItem("token", JSON.stringify(res.data.token));
+      }
+      if (res.data && res.data.user) {
+        localStorage.setItem("user", JSON.stringify(res.data.user));
       }
     } catch (error) {
       console.error(error);
@@ -95,6 +94,7 @@ export const UserProvider = ({ children }) => {
       });
       if (res.data) {
         localStorage.removeItem("token");
+        localStorage.removeItem("user");
       }
     } catch (error) {
       console.error(error);

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ProductContext } from "../../../context/contextProd/ProductState";
 import { CategoryContext } from "../../../context/categoryContext/CategoryState";
-import { Select, Space } from 'antd';
+import { Select, Space, Spin } from 'antd';
 import { notification } from "antd";
 import "./EditProduct.scss";
 import Footer from "../../Footer/Footer";
@@ -22,6 +22,7 @@ const EditProduct = () => {
   useEffect(() => {
     getProductId(id);
     getCategories();
+
   }, []);
 
   useEffect(() => {
@@ -29,7 +30,7 @@ const EditProduct = () => {
       setName(product.name);
       setPrice(product.price);
       setDescription(product.description);
-      setCategoryId(product.categoryId);
+      setCategoryId(product.Categories);
     }
   }, [product]);
 
@@ -51,11 +52,12 @@ const EditProduct = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-   
+
     const formData = new FormData();
     formData.append("name", name);
     formData.append("price", price);
     formData.append("description", description);
+ 
     if (Array.isArray(categoryId)) { // Verificar si categoryId es un array
       for (let i = 0; i < categoryId.length; i++) {
         formData.append('CategoryId', categoryId[i]);
@@ -78,7 +80,11 @@ const EditProduct = () => {
   const handleImageChange = (event) => {
     setImage(event.target.files[0]);
   };
-
+ 
+  
+  if(!product){
+    return <Spin/>
+  }
   return (
     <div>
       <h2>Editar producto</h2>
@@ -132,7 +138,7 @@ const EditProduct = () => {
                 zIndex: 1
               }}
               placeholder="Please select"
-              defaultValue= {""}    //{product.categories.map(category => category.name) || ""}
+              defaultValue={product.Categories?.map(category => category.name)}
               onChange={handleChange}
               options={options}
             />
@@ -152,7 +158,7 @@ const EditProduct = () => {
         <button type="submit" className="form-button">Editar</button>
         <h1 className="form-message">{message}</h1>
       </form>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

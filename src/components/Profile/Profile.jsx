@@ -44,7 +44,7 @@ const Profile = () => {
         </Card>
         <h2>Historial de pedidos</h2>
         <Collapse>
-          {user.Orders.map((order) => (
+          {user.Orders?.map((order) => (
             <Panel header={order.createdAt} key={order.id}>
               <div className="text_container">
                 <b style={{ fontSize: "1.3em" }}>Productos:{" "}</b>
@@ -59,7 +59,7 @@ const Profile = () => {
                     {order.Products.reduce(
                       (total, product) => total + product.price,
                       0
-                    )}{" "}
+                    ).toFixed(2)}
                     €
                   </b>
                 </p>
