@@ -82,7 +82,7 @@ const EditProduct = () => {
   return (
     <div>
       <h2>Editar producto</h2>
-      <form className="form-container" onSubmit={handleSubmit}>
+      <form className="form-container_edt" onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Nombre de Producto:</label>
           <input
@@ -132,7 +132,7 @@ const EditProduct = () => {
                 zIndex: 1
               }}
               placeholder="Please select"
-              defaultValue={product.Categories.map(category => category.name) || ""}
+              defaultValue= {""}    //{product.categories.map(category => category.name) || ""}
               onChange={handleChange}
               options={options}
             />

@@ -38,7 +38,12 @@ const products = (state, action) => {
                 ...state,
                 cart: updatedCart,
             };
-       
+        case 'GET_PRODUCT_BY_NAME':
+            return {
+                ...state,
+                products: action.payload,
+            };
+
         default:
             return state;
     }

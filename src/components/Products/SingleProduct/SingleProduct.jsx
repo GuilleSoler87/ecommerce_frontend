@@ -3,32 +3,30 @@ import { useParams } from 'react-router-dom';
 import { ProductContext } from '../../../context/contextProd/ProductState';
 import { Image, Collapse, Avatar, notification } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import { Link, useNavigate} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ReviewContext } from '../../../context/ReviewContext/ReviewState';
 import { UserContext } from '../../../context/userContext/UserState';
 import './SingleProduct.scss';
 import Carrito from '../../../assets/carrito.png';
 import Footer from '../../Footer/Footer';
+
 const { Panel } = Collapse;
 
 const SingleProduct = () => {
   const { id } = useParams();
   const { getProductId, product, addCart } = useContext(ProductContext);
   const { createReview } = useContext(ReviewContext);
-  const { user, token } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const [tittle, setTittle] = useState('');
   const [comment, setComment] = useState('');
-  const navigate = useNavigate();
 
   useEffect(() => {
     getProductId(id);
   }, [id]);
 
-
-
   const handleAddReview = (e) => {
     e.preventDefault();
-    if (!token || !user) {
+    if (!user) {
       notification.error({
         message: 'Inicia sesión para añadir una reseña.',
       });
@@ -38,18 +36,14 @@ const SingleProduct = () => {
     const formData = new FormData();
     formData.append('tittle', tittle);
     formData.append('comment', comment);
-    formData.append('UserId', user.id); //creo que es aquí el fallo
+    formData.append('UserId', user.id);
     formData.append('ProductId', id);
 
     createReview(formData)
-    console.log(formData)
       .then(() => {
-        setTittle('');
-        setComment('');
         notification.success({
           message: 'Reseña creada con éxito.',
         });
-        navigate('/products');
       })
       .catch((error) => {
         console.error(error);
@@ -92,14 +86,14 @@ const SingleProduct = () => {
               </button>
               <Link to='/products'>
                 <button className='go_prod_buy2'><span>Volver atrás</span></button>
-              </Link>
+                </Link>
             </div>
           </div>
         </div>
         <div className='button_reviews_cont'>
           <form className='review-form'>
             <div className='form-group'>
-              <label htmlFor='title'>Título:</label>
+              <label htmlFor='title'><b>Título:</b></label>
               <input
                 className='form-group_input'
                 type='text'
@@ -109,7 +103,7 @@ const SingleProduct = () => {
               />
             </div>
             <div className='form-group'>
-              <label htmlFor='comment'>Comentario:</label>
+              <label htmlFor='comment'><b>Comentario:</b></label>
               <input
                 className='form-group_input2'
                 type='text'
@@ -141,7 +135,9 @@ const SingleProduct = () => {
               ))}
             </Collapse>
           ) : (
-            <p>Este producto no tiene reseñas</p>
+            <div className='no_reviews_message'>
+              <p>Este producto todavía no tiene reseñas.</p>
+            </div>
           )}
         </div>
       </div>

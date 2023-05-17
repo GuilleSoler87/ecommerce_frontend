@@ -107,6 +107,18 @@ export const ProductProvider = ({ children }) => {
     });
   };
 
+  const getProductByName = async (input) => {
+    try {
+      const res = await axios.get(API_URL + 'products/getByName/' + input);
+      dispatch({
+        type: 'GET_PRODUCT_BY_NAME',
+        payload: res.data,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
 
   return (
     <ProductContext.Provider
@@ -122,6 +134,7 @@ export const ProductProvider = ({ children }) => {
         addCart,
         clearCart,
         removeProduct,
+        getProductByName
       }}
     >
       {children}

@@ -169,26 +169,35 @@
     align-items: center;
 }
 
-.form-group {
+.form-group_sinp {
     display: flex;
     margin-right: 10px;
     align-items: center;
 }
 
-.form-group label {
+.form-group_sinp label {
     margin-right: 5px;
     font-weight: bold;
 }
+
 .form-group_input {
     height: 30px;
     margin-right: 35px;
     width: 200px;
+    margin-left: 8px;
+    border-color: rgb(245, 246, 246);
+    border-radius: 10px;
 }
+
 .form-group_input2 {
     height: 30px;
     margin-right: 35px;
     width: 380px;
+    margin-left: 8px;
+    border-color: rgb(245, 246, 246);
+    border-radius: 10px;
 }
+
 .button_review {
     display: inline-flex;
     align-items: left;
@@ -237,4 +246,15 @@
     word-break: break-word;
     /* Permite cortar palabras largas */
     overflow-wrap: break-word;
+}
+
+.no_reviews_message {
+    margin-top: 16px;
+    padding: 16px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 18px;
+    color: #000000;
+    margin-bottom: 140px;
 }
